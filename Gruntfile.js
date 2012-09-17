@@ -5,7 +5,7 @@ module.exports = function(grunt) {
   // Project configuration.
   grunt.initConfig({
     test: {
-      files: ['test/**/*.js']
+      files: ['test/**/*_test.js']
     },
     lint: {
       files: ['Gruntfile.js', 'tasks/**/*.js', 'test/**/*.js']
@@ -13,6 +13,13 @@ module.exports = function(grunt) {
     watch: {
       files: '<config:lint.files>',
       tasks: 'default'
+    },
+    striplogging : {
+      main : {
+        src : 'test/fixtures/src/all_api_methods.js',
+        dest : 'test/fixtures/src/all_api_methods.built.js',
+        stripConsole : true
+      }
     },
     jshint: {
       options: {
@@ -37,6 +44,6 @@ module.exports = function(grunt) {
   grunt.loadTasks('tasks');
 
   // Default task.
-  grunt.registerTask('default', 'lint test');
+  grunt.registerTask('default', 'iog');
 
 };
