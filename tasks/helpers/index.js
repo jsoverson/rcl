@@ -1,8 +1,10 @@
 var grunt = require('grunt'),
-    falafel = require('falafel');
+    falafel = require('falafel'),
+    fs = require('fs');
 
-exports.startServer = function(port) {
+exports.startServer = function(address, port) {
   "use strict";
+  address = address || '0.0.0.0';
   port = port || 8888;
 
   var app = require('http').createServer(),
@@ -18,7 +20,7 @@ exports.startServer = function(port) {
 exports.stripLogging = function(nodeName, file, dest) {
   "use strict";
 
-  var src = grunt.file.read(file) || '';
+  var src = fs.existsSync(file) ? grunt.file.read(file) : file;
 
   var output = falafel(src, function(node){
     if (
@@ -32,7 +34,7 @@ exports.stripLogging = function(nodeName, file, dest) {
   if (dest) {
     return grunt.file.write(dest, output);
   } else {
-    return output;
+    return output.toString();
   }
 };
 
