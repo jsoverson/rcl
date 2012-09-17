@@ -27,7 +27,7 @@ exports.stripLogging = function(nodeName, file, dest) {
         node.type === 'CallExpression' &&
         node.callee.object && node.callee.object.name === nodeName
       ) {
-      node.update('');
+      node.update('0');
     }
   });
 
