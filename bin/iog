@@ -1,2 +1,4 @@
 #!/usr/bin/env node
-require('grunt').npmTasks('iog').cli();
+require('grunt').npmTasks('iog').cli({
+  gruntfile : __dirname + '/../Gruntfile.js'
+});
