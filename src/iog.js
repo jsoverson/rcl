@@ -47,7 +47,6 @@
           args    : args,
           caller  : caller
         });
-        console.log(caller);
       }
       if (!socket || api.client)  {
         if (console) {
