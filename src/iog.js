@@ -9,7 +9,8 @@
       var depth = 5,
           stack = err.stack.split("\n"),
           caller = stack[depth],
-          clean = caller.slice(caller.indexOf('at ') + 3, caller.length),
+          callerParts = caller.match(/\s\(?([^\s\)]*)\)?$/),
+          clean = callerParts[1],
           parts = clean.match(/^.*\/([^\/]*):(\d*):(\d*)$/);
 
       return {
