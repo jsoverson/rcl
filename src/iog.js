@@ -4,12 +4,30 @@
 
   var storedLevel = root.localStorage ? parseInt(root.localStorage.getItem('iog.level') || 0,10) : 0;
 
+  function getCaller() {
+    try { throw Error('') } catch(err) {
+      var depth = 5,
+          stack = err.stack.split("\n"),
+          caller = stack[depth],
+          clean = caller.slice(caller.indexOf('at ') + 3, caller.length),
+          parts = clean.match(/^.*\/([^\/]*):(\d*):(\d*)$/);
+
+      return {
+        original : clean,
+        file : parts[1],
+        line : parts[2],
+        col : parts[3]
+      };
+    }
+  }
+
   root.iog = (function(){
     var socket,
-        api = { _logLevel : storedLevel
-              , client : true
-              , server : true
-              };
+        api = {
+          _logLevel : storedLevel,
+          client    : true,
+          server    : true
+        };
 
     var levels = [
       'trace',
@@ -21,7 +39,16 @@
 
     function emit(level,args) {
       if (levels[level] < api._logLevel) return;
-      if (socket && api.server) socket.emit('iog', {level : level, args : args});
+      if (socket && api.server) {
+        var caller = getCaller();
+
+        socket.emit('iog', {
+          level   : level,
+          args    : args,
+          caller  : caller
+        });
+        console.log(caller);
+      }
       if (!socket || api.client)  {
         if (console) {
           if (console[level]) console[level].apply(console,args);
