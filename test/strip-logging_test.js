@@ -22,7 +22,7 @@ var grunt = require('grunt');
  test.ifError(value)
  */
 
-var helpers = require('./tasks/helpers');
+var helpers = require('../tasks/helpers');
 
 function LoggingError() {
   Error.apply(this, arguments);
@@ -33,32 +33,17 @@ LoggingError.prototype.constructor = LoggingError;
 LoggingError.prototype.name = 'LoggingError';
 
 var read = grunt.file.read;
+var apiName = 'iog';
 
 function run(string) {
   "use strict";
-  var apiName = 'clog';
   var api = [
     'log',
     'debug',
     'info',
     'warn',
     'error',
-    'assert',
-    'clear',
-    'dir',
-    'dirxml',
-    'trace',
-    'group',
-    'groupCollapsed',
-    'groupEnd',
-    'time',
-    'timeEnd',
-    'timeStamp',
-    'profile',
-    'profileEnd',
-    'count',
-    //'exception',
-    'table'
+    'trace'
   ];
 
   global[apiName] = {};
@@ -79,15 +64,15 @@ exports['strip-logging'] = {
     //    test.expect(2);
     var file = 'test/fixtures/src/basic.js';
     test.throws(run(read(file)),LoggingError,'Original should throw error');
-    test.doesNotThrow(run(grunt.helper('stripconsole',[file])), 'Stripped should not throw error');
+    test.doesNotThrow(run(helpers.stripLogging(apiName,[file])), 'Stripped should not throw error');
 
     file = 'test/fixtures/src/other_object.js';
     test.throws(run(read(file)),LoggingError,'Original should throw error');
-    test.doesNotThrow(run(grunt.helper('stripconsole',[file])), 'Stripped should not throw error');
+    test.doesNotThrow(run(helpers.stripLogging(apiName,read(file))), 'Stripped should not throw error');
 
     file = 'test/fixtures/src/all_api_methods.js';
     test.throws(run(read(file)),LoggingError,'Original should throw error');
-    test.doesNotThrow(run(grunt.helper('stripconsole',[file])), 'Stripped should not throw error');
+    test.doesNotThrow(run(helpers.stripLogging(apiName,[file])), 'Stripped should not throw error');
 
 
     test.done();

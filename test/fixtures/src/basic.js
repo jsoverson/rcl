@@ -1,1 +1,1 @@
-clog.info('fixture');
+iog.info('fixture');

@@ -1,15 +1,15 @@
 
 var FOO = {
-  clog : {
+  iog : {
     info : function(){}
   }
 };
 
 function a(){
-  clog.info("BAR");
-  FOO.clog.info("FOOOBJ");
+  iog.info("BAR");
+  FOO.iog.info("FOOOBJ");
 }
 
-FOO.clog.log("FOOOBJ");
+FOO.iog.info("FOOOBJ");
 
 a();

@@ -2,10 +2,15 @@
 <html>
 <head>
     <script src="//cdnjs.cloudflare.com/ajax/libs/socket.io/0.9.10/socket.io.min.js"></script>
-    <script src="../src/client-logger.js"></script>
+    <script src="../src/iog.js"></script>
 
     <script>
-        Log.debug('test');
+        iog.connect()
+        iog.info('test');
+        iog.debug('test');
+        iog.warn('test');
+        iog.error('test');
+        iog.trace('test');
     </script>
 </head>
 <body>
