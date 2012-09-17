@@ -36,9 +36,9 @@ var read = grunt.file.read;
 var apiName = 'iog';
 
 function run(string) {
+  if (typeof string === 'undefined' || string === 'undefined') throw new Error('Undefined string passed in');
   "use strict";
   var api = [
-    'log',
     'debug',
     'info',
     'warn',
@@ -61,10 +61,11 @@ exports['strip-logging'] = {
     done();
   },
   'helper': function(test) {
+    var file;
     //    test.expect(2);
-    var file = 'test/fixtures/src/basic.js';
+    file = 'test/fixtures/src/basic.js';
     test.throws(run(read(file)),LoggingError,'Original should throw error');
-    test.doesNotThrow(run(helpers.stripLogging(apiName,[file])), 'Stripped should not throw error');
+    test.doesNotThrow(run(helpers.stripLogging(apiName,file)), 'Stripped should not throw error');
 
     file = 'test/fixtures/src/other_object.js';
     test.throws(run(read(file)),LoggingError,'Original should throw error');
@@ -72,8 +73,11 @@ exports['strip-logging'] = {
 
     file = 'test/fixtures/src/all_api_methods.js';
     test.throws(run(read(file)),LoggingError,'Original should throw error');
-    test.doesNotThrow(run(helpers.stripLogging(apiName,[file])), 'Stripped should not throw error');
+    test.doesNotThrow(run(helpers.stripLogging(apiName,file)), 'Stripped should not throw error');
 
+    file = 'test/fixtures/src/nodes_in_blocks.js';
+    test.throws(run(read(file)),LoggingError,'Original should throw error');
+    test.doesNotThrow(run(helpers.stripLogging(apiName,file)), 'Stripped should not throw error');
 
     test.done();
   }
