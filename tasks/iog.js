@@ -16,18 +16,22 @@ module.exports = function(grunt) {
 
   grunt.registerTask('iog', 'Logging bridge for websocket clients', function() {
     var options = this.options({
-      port : 8888
-    });
+          port : 8888
+        }),
+        io = helpers.startServer(undefined, options.port),
+        loggers = {};
 
     var done = this.async();
-    var io = helpers.startServer(undefined, options.port);
 
     io.set('log level',1); // warnings only
     logger.debug('Connected on port ' + options.port);
 
     io.sockets.on('connection', function (socket) {
       socket.on('iog', function (data) {
-        logger[data.level].apply(logger,data.args);
+        var file = data.caller.file;
+        var logger = loggers[file] ? loggers[file] : loggers[file] = log4js.getLogger(file);
+        var location = ['l', data.caller.line, ':', data.caller.col].join('');
+        logger[data.level].apply(logger,[location].concat(data.args));
       });
     });
   });
