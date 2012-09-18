@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body {
+            font-family:"Courier New", monospace;
+            background-color: black;
+            color:#ddd;
+            font-size:13px
+        }
+        p {
+            margin:0;
+            padding:0;
+        }
+        .level {
+            margin-right:1em;
+        }
+        .line {
+            margin-right:1em;
+        }
+
+        .level-warn { color : yellow }
+        .level-error { color : red }
+        .level-debug { color : cyan }
+        .level-info { color : green }
+        .level-trace { color : blue }
+
+        }
+    </style>
+    <script src="/socket.js"></script>
+
+</head>
+<body>
+<div id="log"></div>
+<script>
+    log = document.getElementById('log');
+    var socket = io.connect(location.origin);
+    socket.on('connect', function () {
+        socket.on('client:iog', function (data) {
+            var p = document.createElement('p');
+            log.appendChild(p);
+            var location = [data.caller.file, ':', data.caller.line, ':', data.caller.col].join('');
+            p.innerHTML = '<span class="level level-' + data.level + '">' + data.level + '</span><span class="line">' + location +'</span><span class="args">' + data.args + '</span>';
+        });
+    });
+</script>
+</body>
+</html>
