@@ -4,7 +4,7 @@
     <style>
         body {
             font-family:"Courier New", monospace;
-            background-color: black;
+            background-color: #001b26;
             color:#ddd;
             font-size:13px
         }
@@ -12,7 +12,7 @@
             margin:0;
             padding:0;
         }
-        .level {
+        .level,.time,.file {
             margin-right:1em;
         }
         .line {
@@ -22,27 +22,52 @@
         .level-warn { color : yellow }
         .level-error { color : red }
         .level-debug { color : cyan }
-        .level-info { color : green }
-        .level-trace { color : blue }
+        .level-info { color : hsl(120, 100%, 37%); }
+        .level-trace { color : hsl(240, 100%, 67%); }
 
-        }
     </style>
     <script src="/socket.js"></script>
 
 </head>
 <body>
+<h1>IOG Web Client. <button id="test-connection">test connection</button></h1>
 <div id="log"></div>
 <script>
     log = document.getElementById('log');
     var socket = io.connect(location.origin);
     socket.on('connect', function () {
+        console.log(arguments);
         socket.on('client:iog', function (data) {
+            console.log(arguments);
             var p = document.createElement('p');
             log.appendChild(p);
-            var location = [data.caller.file, ':', data.caller.line, ':', data.caller.col].join('');
-            p.innerHTML = '<span class="level level-' + data.level + '">' + data.level + '</span><span class="line">' + location +'</span><span class="args">' + data.args + '</span>';
+            var date = new Date();
+            var time = date.toDateString() + ' ' + date.toLocaleTimeString();
+            var location = ['L', data.caller.line, ':', data.caller.col].join('');
+            p.innerHTML = '<span class="level-' + data.level + '">' +
+                            '<span class="time">[' + time + ']</span>' +
+                            '<span class="level">[' + data.level.toUpperCase() + ']</span>' +
+                            '<span class="file">' + data.caller.file + ' -</span>' +
+                          '</span>' +
+                          '<span class="line">' + location +'</span>' +
+                          '<span class="args">' + data.args + '</span>';
         });
     });
+
+    document.getElementById('test-connection').addEventListener('click',function(){
+       if (socket) {
+           socket.emit('iog',{
+               level   : 'debug',
+               args    : ['Test succeeded'],
+               caller  : {
+                   file : 'blank.html',
+                   line : 12,
+                   col  : 13
+               }
+           });
+       }
+    });
+
 </script>
 </body>
 </html>
