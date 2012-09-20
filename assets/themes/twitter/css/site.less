@@ -1,0 +1,217 @@
+
+.gradient (@origin: left, @start: #ffffff, @stop: #000000) {
+  background-color: @start;
+  background-image: -webkit-linear-gradient(@origin, @start, @stop);
+  background-image: -moz-linear-gradient(@origin, @start, @stop);
+  background-image: -o-linear-gradient(@origin, @start, @stop);
+  background-image: -ms-linear-gradient(@origin, @start, @stop);
+  background-image: linear-gradient(@origin, @start, @stop);
+}
+
+
+/* Override some defaults */
+html, body {
+  background-color: #c2c2c2;
+}
+.navbar {
+  margin-bottom: 0;
+}
+.nav {
+  li {
+    line-height:34px;
+  }
+}
+
+
+.container > footer {
+  margin-top: 20px;
+}
+.container > footer p {
+  text-align: center; /* center align it with the container */
+}
+
+.navbar .brand {
+  padding: 5px 20px;
+}
+
+/* The white background content wrapper */
+.content {
+  background-color: #fff;
+  padding: 20px;
+  margin: 20px -20px; /* negative indent the amount of the padding to maintain the grid system */
+  -webkit-border-radius: 6px;
+     -moz-border-radius: 6px;
+          border-radius: 6px;
+  -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.15);
+     -moz-box-shadow: 0 1px 2px rgba(0,0,0,.15);
+          box-shadow: 0 1px 2px rgba(0,0,0,.15);
+}
+
+/* Page header tweaks */
+.page-header {
+  background-color: #f5f5f5;
+  padding: 20px 20px 10px;
+  margin: -20px -20px 20px;
+  border-radius: 6px 6px 0 0;
+
+}
+
+.topbar .btn {
+  border: 0;
+}
+
+.content {
+  min-height:500px;
+}
+
+/* tag_box ======================================================== */
+
+.tag_box {
+	list-style:none;
+	margin:0;
+	padding:5px 0 ;
+	overflow:hidden;
+}
+.tag_box li {
+	line-height:28px;
+}
+.tag_box.inline li {
+	float:left;
+}
+.tag_box a {
+	padding: 3px 6px;
+	margin: 2px;
+	background: #eee;
+	color:#005F6B;
+	border-radius: 3px;
+	text-decoration:none;
+}
+.tag_box a span{
+	vertical-align:super;
+	font-size:0.8em;
+}
+.tag_box a.active {
+	background:#57A957;
+	border:1px solid #4C964D;
+	color:#FFF;
+}
+
+body > .navbar {
+  font-size: 13px;
+}
+
+/* Change the docs' brand */
+body > .navbar .brand {
+  padding-right: 0;
+  padding-left: 0;
+  margin-left: 20px;
+  float: right;
+  font-weight: bold;
+  color: #000;
+  text-shadow: 0 1px 0 rgba(255,255,255,.1), 0 0 30px rgba(255,255,255,.125);
+  -webkit-transition: all .2s linear;
+  -moz-transition: all .2s linear;
+  transition: all .2s linear;
+}
+body > .navbar .brand:hover {
+  text-decoration: none;
+  text-shadow: 0 1px 0 rgba(255,255,255,.1), 0 0 30px rgba(255,255,255,.4);
+}
+
+
+.masthead {
+  color: #fff;
+  text-align: center;
+  text-shadow: 0 1px 3px rgba(0,0,0,.4), 0 0 30px rgba(0,0,0,.075);
+//  .gradient(top,hsl(0, 0%, 7%),#61a1bd);
+  .gradient(top,hsl(0, 0%, 100%),#e6e6e6);
+  -webkit-box-shadow: inset 0 3px 7px rgba(0,0,0,.2), inset 0 -3px 7px rgba(0,0,0,.2);
+  -moz-box-shadow: inset 0 3px 7px rgba(0,0,0,.2), inset 0 -3px 7px rgba(0,0,0,.2);
+  box-shadow: inset 0 3px 7px rgba(0,0,0,.2), inset 0 -3px 7px rgba(0,0,0,.2);
+  padding: 70px 0 20px;
+  margin:0;
+  color: #fff;
+  h1 {
+    font-size: 90px;
+    font-weight: bold;
+    line-height: 1;
+    letter-spacing: -2px;
+    color: hsl(0,0%,44%);
+  }
+  h2 {
+    font-weight: 200;
+    margin-bottom: 5px;
+    color: hsl(201, 15%, 42%);
+  }
+}
+
+.team {
+  text-align: center;
+  color: #5a5a5a;
+  h1 {
+    margin: 60px 0 10px;
+    font-size: 60px;
+    font-weight: 200;
+    line-height: 1;
+    letter-spacing: -1px;
+  }
+  h2 {
+    font-weight: 200;
+    margin-bottom: 5px;
+    color: #ddd;
+  }
+  p {
+    line-height: 1.5;
+    font-size: 16px;
+  }
+  a {
+  }
+  .members {
+    margin-bottom: 10px;
+    margin-top:20px;
+    font-size: 16px;
+    font-weight: 300;
+    line-height: 25px;
+    color: #bbb;
+  }
+}
+
+.footer {
+  padding: 70px 0;
+  margin-top: 70px;
+  border-top: 1px solid #e5e5e5;
+  background-color: #f5f5f5;
+  text-align:center;
+  p {
+    margin-bottom: 0;
+    color: #777;
+  }
+  .links {
+    margin: 10px 0;
+    li {
+      display: inline;
+      margin-right: 10px;
+    }
+  }
+}
+
+/* Desktop large */
+@media (min-width: 1200px) {
+}
+
+/* Desktop
+------------------------- */
+@media (max-width: 980px) {
+}
+
+/* Tablet / desktop */
+@media (min-width: 768px) and (max-width: 980px) {
+}
+
+/* Tablet */
+@media (max-width: 767px) {
+}
+
+/* Landscape phones */
+@media (max-width: 480px) {
+}
