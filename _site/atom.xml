@@ -4,7 +4,7 @@
  <title>OneHealth Developer Blog</title>
  <link href="http://onehealth.github.com/atom.xml" rel="self"/>
  <link href="http://onehealth.github.com"/>
- <updated>2012-09-20T11:09:18-07:00</updated>
+ <updated>2012-09-22T23:25:06-07:00</updated>
  <id>http://onehealth.github.com</id>
  <author>
    <name>OneHealth Solutions</name>
@@ -26,9 +26,11 @@
    <updated>2001-01-01T00:00:00-08:00</updated>
    <id>http://onehealth.github.com/javascript/2001/01/01/overview</id>
    <content type="html">&lt;h1 id='foo_overview'&gt;foo overview&lt;/h1&gt;
-
-&lt;p&gt;&lt;code&gt;
-&lt;/code&gt;&lt;/p&gt;</content>
+&lt;div class='highlight'&gt;&lt;pre&gt;&lt;code class='js'&gt;&lt;span class='kd'&gt;function&lt;/span&gt; &lt;span class='nx'&gt;bar&lt;/span&gt;&lt;span class='p'&gt;(){&lt;/span&gt;
+  &lt;span class='kd'&gt;var&lt;/span&gt; &lt;span class='nx'&gt;foo&lt;/span&gt; &lt;span class='o'&gt;=&lt;/span&gt; &lt;span class='s1'&gt;&amp;#39;MONKEYS!&amp;#39;&lt;/span&gt;&lt;span class='p'&gt;;&lt;/span&gt;
+&lt;span class='p'&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;</content>
  </entry>
  
  
