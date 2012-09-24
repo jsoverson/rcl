@@ -20,7 +20,7 @@ module.exports = function(grunt) {
         //inline : true,
         src : 'test/fixtures/src/all_api_methods.js',
         dest : 'test/fixtures/src/all_api_methods.built.js',
-        nodes : ['iog','console']
+        nodes : ['erl','console']
       }
     },
     jshint: {
@@ -46,6 +46,6 @@ module.exports = function(grunt) {
   grunt.loadTasks('tasks');
 
   // Default task.
-  grunt.registerTask('default', 'iog');
+  grunt.registerTask('default', 'erl');
 
 };

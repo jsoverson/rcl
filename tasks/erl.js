@@ -8,12 +8,12 @@
 
 var helpers = require('./helpers');
 var log4js = require('log4js');
-var glogger = log4js.getLogger('iog');
+var glogger = log4js.getLogger('erl');
 
 module.exports = function(grunt) {
   'use strict';
 
-  grunt.registerTask('iog', 'Logging bridge for websocket clients', function() {
+  grunt.registerTask('erl', 'Logging bridge for websocket clients', function() {
     var options = this.options({
           port : 8888
         }),
@@ -26,12 +26,12 @@ module.exports = function(grunt) {
     glogger.debug('Connected on port ' + options.port);
 
     io.sockets.on('connection', function (socket) {
-      socket.on('iog', function (data) {
+      socket.on('erl', function (data) {
         var file = data.caller.file;
         var logger = loggers[file] ? loggers[file] : loggers[file] = log4js.getLogger(file);
         var location = ['l', data.caller.line, ':', data.caller.col].join('');
         logger[data.level].apply(logger,[location].concat(data.args));
-        socket.broadcast.emit('client:iog', data);
+        socket.broadcast.emit('client:erl', data);
       });
     });
   });

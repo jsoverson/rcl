@@ -1,4 +1,4 @@
-# iog
+# Erl
 
 A websocket bridge allowing persistent debug logging from client to server/local node instance
 
@@ -6,11 +6,11 @@ A websocket bridge allowing persistent debug logging from client to server/local
 
 ### Client
 
-Include `src/iog.js` in your client side code and call iog.connect(server,port) to connect to your running instance of `iog`
+Include `src/erl.js` in your client side code and call erl.connect(server,port) to connect to your running instance of `erl`
 
 ### Server / Local 
 
-Run `iog` or ./bin/iog from whereever you installed iog.
+Run `erl` or ./bin/erl from where ever you installed erl.
 
 ### Enjoy!
 
@@ -18,7 +18,7 @@ Now you have loads more logging power at your fingertips.
 
 ## Stripping these logs out
 
-Iog delegates to grunt-strip (originally part of this project) to strip
+Erl delegates to grunt-strip (originally part of this project) to strip
 out the logging from your deployable project. This ensures your final product
 does not retain any bloat from development and doesn't unnecessarily expose any
 extra intent behind your logic.

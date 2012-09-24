@@ -1,8 +1,8 @@
 {
-  "name": "iog",
+  "name": "erl",
   "description": "A websocket bridge allowing persistent debug logging from client to server",
   "version": "0.1.0",
-  "homepage": "https://github.com/joverson/iog",
+  "homepage": "https://github.com/joverson/erl",
   "author": {
     "name": "Jarrod Overson",
     "email": "jsoverson@gmail.com",
@@ -10,19 +10,19 @@
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/joverson/iog.git"
+    "url": "git://github.com/joverson/erl.git"
   },
   "bugs": {
-    "url": "https://github.com/joverson/iog/issues"
+    "url": "https://github.com/joverson/erl/issues"
   },
   "licenses": [
     {
       "type": "MIT",
-      "url": "https://github.com/joverson/iog/blob/master/LICENSE-MIT"
+      "url": "https://github.com/joverson/erl/blob/master/LICENSE-MIT"
     }
   ],
   "main": "Gruntfile.js",
-  "bin": "bin/iog",
+  "bin": "bin/erl",
   "engines": {
     "node": ">= 0.6.0"
   },

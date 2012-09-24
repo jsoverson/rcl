@@ -30,14 +30,14 @@
 
 </head>
 <body>
-<h1>IOG Web Client. <button id="test-connection">test connection</button></h1>
+<h1>ERL Web Client. <button id="test-connection">test connection</button></h1>
 <div id="log"></div>
 <script>
     log = document.getElementById('log');
     var socket = io.connect(location.origin);
     socket.on('connect', function () {
         console.log(arguments);
-        socket.on('client:iog', function (data) {
+        socket.on('client:erl', function (data) {
             console.log(arguments);
             var p = document.createElement('p');
             log.appendChild(p);
@@ -56,7 +56,7 @@
 
     document.getElementById('test-connection').addEventListener('click',function(){
        if (socket) {
-           socket.emit('iog',{
+           socket.emit('erl',{
                level   : 'debug',
                args    : ['Test succeeded'],
                caller  : {
