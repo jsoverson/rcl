@@ -31,25 +31,3 @@ exports.startServer = function(address, port) {
   return io;
 
 };
-
-exports.stripLogging = function(nodeName, file, dest) {
-  "use strict";
-
-  var src = fs.existsSync(file) ? grunt.file.read(file) : file;
-
-  var output = falafel(src, function(node){
-    if (
-        node.type === 'CallExpression' &&
-        node.callee.object && node.callee.object.name === nodeName
-      ) {
-      node.update('0');
-    }
-  });
-
-  if (dest) {
-    return grunt.file.write(dest, output);
-  } else {
-    return output.toString();
-  }
-};
-

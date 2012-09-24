@@ -16,27 +16,12 @@ Run `iog` or ./bin/iog from whereever you installed iog.
 
 Now you have loads more logging power at your fingertips.
 
-
 ## Stripping these logs out
 
-Iog comes pre-built with a grunt task that can strip all of your
-iog logging out of your built JavaScript. As an added bonus you
-can configure it to remove all `console.*` calls you may still have
-lying around. (Technically, Iog as a grunt task is still very useful
-*just* for that if that's all you want)
-
-## Grunt
-
-Install this grunt plugin next to your project's [Gruntfile][getting_started] with: `npm install iog`
-
-Then add this line to your project's Gruntfile:
-
-```javascript
-grunt.loadNpmTasks('iog');
-```
-
-[grunt]: https://github.com/cowboy/grunt
-[getting_started]: https://github.com/cowboy/grunt/blob/master/docs/getting_started.md
+Iog delegates to grunt-strip (originally part of this project) to strip
+out the logging from your deployable project. This ensures your final product
+does not retain any bloat from development and doesn't unnecessarily expose any
+extra intent behind your logic.
 
 ## Contributing
 In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [grunt][grunt].

@@ -6,13 +6,12 @@
  * Licensed under the MIT license.
  */
 
-'use strict';
-
 var helpers = require('./helpers');
 var log4js = require('log4js');
-var logger = log4js.getLogger('iog');
+var glogger = log4js.getLogger('iog');
 
 module.exports = function(grunt) {
+  'use strict';
 
   grunt.registerTask('iog', 'Logging bridge for websocket clients', function() {
     var options = this.options({
@@ -24,7 +23,7 @@ module.exports = function(grunt) {
     var done = this.async();
 
     io.set('log level',1); // warnings only
-    logger.debug('Connected on port ' + options.port);
+    glogger.debug('Connected on port ' + options.port);
 
     io.sockets.on('connection', function (socket) {
       socket.on('iog', function (data) {
@@ -37,14 +36,5 @@ module.exports = function(grunt) {
     });
   });
 
-  grunt.registerMultiTask('striplogging', 'Strip console and iog logging messages', function() {
-    var file = this.file.src;
-    var dest = this.file.dest;
 
-    var output = helpers.stripLogging('iog', file);
-
-    if (this.data.stripConsole) output = helpers.stripLogging('console', output);
-
-    grunt.file.write(dest,output);
-  });
 };

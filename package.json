@@ -32,8 +32,7 @@
   "dependencies": {
     "grunt": "~0.4.0a",
     "socket.io" : "*",
-    "log4js" : "*",
-    "falafel": "0.1.3"
+    "log4js" : "*"
   },
   "devDependencies": {
     "grunt": "~0.4.0a"

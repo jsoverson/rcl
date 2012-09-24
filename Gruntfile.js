@@ -14,11 +14,13 @@ module.exports = function(grunt) {
       files: '<config:lint.files>',
       tasks: 'default'
     },
-    striplogging : {
+    strip : {
       main : {
+        //files : 'test/fixtures/src/all_api_methods.built.js',
+        //inline : true,
         src : 'test/fixtures/src/all_api_methods.js',
         dest : 'test/fixtures/src/all_api_methods.built.js',
-        stripConsole : true
+        nodes : ['iog','console']
       }
     },
     jshint: {

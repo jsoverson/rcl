@@ -1,16 +1,16 @@
 
 <html>
 <head>
-    <script src="../tasks/helpers/socket.io.0.9.10.js"></script>
     <script src="../src/iog.js"></script>
 
     <script>
-        iog.connect()
-        iog.info('info');
-        iog.debug('debug');
-        iog.warn('warn');
-        iog.error('error');
-        iog.trace('trace');
+        var api = iog;
+        //api.connect('127.0.0.1','8888');
+        api.info('info');
+        api.debug('debug');
+        api.warn('warn');
+        api.error('error');
+        api.trace('trace');
     </script>
 </head>
 <body>
