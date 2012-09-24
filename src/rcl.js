@@ -2,7 +2,7 @@
 (function(root, console){
   "use strict";
 
-  var name = 'erl',
+  var name = 'rcl',
       storedLevel = root.localStorage ? parseInt(root.localStorage.getItem(name + '.level') || 0,10) : 0;
 
   function getCaller() {

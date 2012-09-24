@@ -1,8 +1,8 @@
 {
-  "name": "erl",
+  "name": "rcl",
   "description": "A websocket bridge allowing persistent debug logging from client to server",
   "version": "0.1.0",
-  "homepage": "https://github.com/joverson/erl",
+  "homepage": "https://github.com/joverson/rcl",
   "author": {
     "name": "Jarrod Overson",
     "email": "jsoverson@gmail.com",
@@ -10,19 +10,19 @@
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/joverson/erl.git"
+    "url": "git://github.com/joverson/rcl.git"
   },
   "bugs": {
-    "url": "https://github.com/joverson/erl/issues"
+    "url": "https://github.com/joverson/rcl/issues"
   },
   "licenses": [
     {
       "type": "MIT",
-      "url": "https://github.com/joverson/erl/blob/master/LICENSE-MIT"
+      "url": "https://github.com/joverson/rcl/blob/master/LICENSE-MIT"
     }
   ],
   "main": "Gruntfile.js",
-  "bin": "bin/erl",
+  "bin": "bin/rcl",
   "engines": {
     "node": ">= 0.6.0"
   },
