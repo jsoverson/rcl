@@ -52,7 +52,6 @@
 
 
     function emit(level,args) {
-      console.log(arguments);
       if (levels[level] < api._logLevel) return;
       if (api.server) logIo.apply(null, arguments);
       if (api.client) logConsole.apply(null, arguments);
