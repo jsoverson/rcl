@@ -26,7 +26,7 @@
         .level-trace { color : hsl(240, 100%, 67%); }
 
     </style>
-    <script src="/socket.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
 
 </head>
 <body>
@@ -38,7 +38,6 @@
     socket.on('connect', function () {
         console.log(arguments);
         socket.on('client:rcl', function (data) {
-            console.log(arguments);
             var p = document.createElement('p');
             log.appendChild(p);
             var date = new Date();
@@ -56,13 +55,14 @@
 
     document.getElementById('test-connection').addEventListener('click',function(){
        if (socket) {
-           socket.emit('rcl',{
-               level   : 'debug',
+           socket.emit('rcl', {
+               repeat  : true,
+               level   : 'info',
                args    : ['Test succeeded'],
                caller  : {
-                   file : 'blank.html',
-                   line : 12,
-                   col  : 13
+                   file : 'Web Client',
+                   line : 0,
+                   col  : 0
                }
            });
        }
