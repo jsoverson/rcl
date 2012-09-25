@@ -31,6 +31,7 @@ module.exports = function(grunt) {
         var logger = loggers[file] ? loggers[file] : loggers[file] = log4js.getLogger(file);
         var location = ['l', data.caller.line, ':', data.caller.col].join('');
         logger[data.level].apply(logger,[location].concat(data.args));
+        if (data.repeat) socket.emit('client:rcl',data);
         socket.broadcast.emit('client:rcl', data);
       });
     });
