@@ -15,7 +15,6 @@ exports.startServer = function(address, port) {
 
   function handler (req, res) {
     var file = '/webclient.html';
-    if (req.url === '/socket.js') file = '/socket.io.0.9.10.js';
     fs.readFile(__dirname + file,
       function (err, data) {
         if (err) {
