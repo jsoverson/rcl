@@ -9,6 +9,7 @@
 var helpers = require('./helpers');
 var log4js = require('log4js');
 var glogger = log4js.getLogger('rcl');
+var format = require('./helpers/string-format');
 
 module.exports = function(grunt) {
   'use strict';
@@ -30,8 +31,21 @@ module.exports = function(grunt) {
         var file = data.caller.file;
         var logger = loggers[file] ? loggers[file] : loggers[file] = log4js.getLogger(file);
         var location = ['l', data.caller.line, ':', data.caller.col].join('');
-        logger[data.level].apply(logger,[location].concat(data.args));
-        if (data.repeat) socket.emit('client:rcl',data);
+        var formats = format.parse(data.args[0]);
+        var dataToLog = data.args;
+        if (formats.length > 0) {
+          dataToLog = format(data.args.shift(), data.args);
+        } else {
+          for (var i = 0; i < data.args.length; i++) {
+            try {
+              data.args[i] = JSON.parse(data.args[i]);
+            } catch(e) {
+
+            }
+          }
+        }
+        logger[data.level].apply(logger,[location].concat(dataToLog));
+        if (data.loopback) socket.emit('client:rcl',data);
         socket.broadcast.emit('client:rcl', data);
       });
     });
