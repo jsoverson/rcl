@@ -1,5 +1,4 @@
 var grunt = require('grunt'),
-    falafel = require('falafel'),
     fs = require('fs');
 
 exports.startServer = function(address, port) {
