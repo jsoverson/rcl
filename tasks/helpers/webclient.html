@@ -43,6 +43,11 @@
             var date = new Date();
             var time = date.toDateString() + ' ' + date.toLocaleTimeString();
             var location = ['L', data.caller.line, ':', data.caller.col].join('');
+            for (var i = 0; i < data.args.length; i++) {
+                if (typeof data.args[i] === 'object') data.args[i] = JSON.stringify(data.args[i])
+            }
+            p.innerText = data.caller.file; // super cheap html escaping
+            data.caller.file = p.innerHTML; // almost feels naughty. Someone will yell at me.
             p.innerHTML = '<span class="level-' + data.level + '">' +
                             '<span class="time">[' + time + ']</span>' +
                             '<span class="level">[' + data.level.toUpperCase() + ']</span>' +
@@ -56,13 +61,13 @@
     document.getElementById('test-connection').addEventListener('click',function(){
        if (socket) {
            socket.emit('rcl', {
-               repeat  : true,
-               level   : 'info',
-               args    : ['Test succeeded'],
-               caller  : {
-                   file : 'Web Client',
-                   line : 0,
-                   col  : 0
+               loopback : true,
+               level    : 'info',
+               args     : ['Test succeeded'],
+               caller   : {
+                   file  : 'Web Client',
+                   line  : 0,
+                   col   : 0
                }
            });
        }
