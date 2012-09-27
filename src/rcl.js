@@ -23,6 +23,24 @@
     }
   }
 
+  function stringify(obj) {
+    if (typeof obj !== 'object') return obj;
+    var cache = [], keyMap = [];
+    var string = JSON.stringify(obj, function(key, value) {
+      if (value instanceof Node) return '[ Node ]';
+      if (typeof value === 'object' && value !== null) {
+        var index;
+        if (index = cache.indexOf(value) !== -1) {
+          return '[ Circular {' + (keyMap[index] || 'root') + '} ]';
+        }
+        cache.push(value);
+        keyMap.push(key);
+      }
+      return value;
+    });
+    return string;
+  }
+
   root[name] = (function(){
     var socket,
         cache = [],
@@ -53,8 +71,8 @@
 
     function emit(level,args) {
       if (levels[level] < api._logLevel) return;
-      if (api.server) logIo.apply(null, arguments);
       if (api.client) logConsole.apply(null, arguments);
+      if (api.server) logIo.apply(null, arguments);
       if (!socket) return api.connect();
     }
 
@@ -78,6 +96,8 @@
       }
 
       if (socket) {
+        // To account for complex, circular objects before jsonification
+        for (var i = 0; i < args.length; i++) args[i] = stringify(args[i]);
         socket.emit(name, data);
       } else {
         cache.push([level, data]);
