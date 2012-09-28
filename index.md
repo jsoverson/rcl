@@ -5,17 +5,71 @@ tagline:
 ---
 {% include JB/setup %}
 
-# What is RCL?
+<section class="row bulletpoints">
+  <div class="bullet span4">
+    <h2>What is RCL?</h2>
+    <p>
+RCL is a browser library and server client that allows you to log extensively from a JavaScript
+application to a remote consumer.
+    </p>
+  </div>
+  <div class="bullet span4">
+    <h2>What do I get?</h2>
+    <p>
+      Loads of beautiful logs viewable from multiple clients all the while not bloating your production code.
+    </p>
+  </div>
+  <div class="bullet span4">
+  <h2>Development priority</h2>
+    <p>
+      <a href="https://github.com/jsoverson/grunt-strip"><code>grunt-strip</code></a>
+      was developed in parallel to remove all your logging before production deployment.
+    </p>
+  </div>
+</section>
 
-> RCL is a browser library and server client that allows you to log extensively from a JavaScript
-> application to a remote consumer. It also supports the build-time stripping of all logging code
-> from an application
 
-It is loads of beautiful, configurable logging viewable from multiple clients all the while not bloating your production code.
+<section class='code-example row'>
+  <h2>Use <code>rcl</code></h2>
+  <img src="{{BASE_PATH}}/assets/images/code-example.png" alt="Code example">
+</section>
+
+
+<section class="output-examples row">
+  <h2 class="span12">And get this</h2>
+  <div class="span12">
+    <img src="{{BASE_PATH}}/assets/images/terminal-output.png" alt="Terminal output" id="terminalOutputExample">
+  </div>
+
+  <h2 class="span12">And this</h2>
+
+  <div class="span6">
+    <a href="#chromeOutputModal" data-toggle="modal">
+      <img src="{{BASE_PATH}}/assets/images/chrome-output.png" alt="Chrome output" id="chromeOutputExample">
+    </a>
+  </div>
+  <div class="span6">
+    <a href="#iphoneOutputModal" data-toggle="modal">
+      <img src="{{BASE_PATH}}/assets/images/iphone-output.png" alt="iPhone output" id="iphoneOutputExample">
+    </a>
+  </div>
+</section>
+
+<!-- Modals -->
+<div class="modal hide fade" id="chromeOutputModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <img src="{{BASE_PATH}}/assets/images/chrome-output.jpg" alt="">
+</div>
+<div class="modal hide fade" id="terminalOutputModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <img src="{{BASE_PATH}}/assets/images/terminal-output.jpg" alt="">
+</div>
+<div class="modal hide fade" id="iphoneOutputModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <img src="{{BASE_PATH}}/assets/images/iphone-output.png" alt="">
+</div>
+<!-- /Modals -->
 
 ---------------------------------
 
-# How do I use RCL?
+# Getting started
 
 ## Include the logging client in your application
 
@@ -25,9 +79,9 @@ It is loads of beautiful, configurable logging viewable from multiple clients al
 
 {% endhighlight %}
 
-For AMD/RequireJS, we recommend adding to your global deps.
+For AMD/RequireJS, It is recommended that you add it to your global `deps` config.
 
-{% highlight html %}
+{% highlight js %}
 
 require.config({
   deps : [
@@ -65,21 +119,8 @@ rcl.debug("Foo is now : %s", 42);
 
 {% endhighlight %}
 
-View your logging in your client console, and on your terminal,
-and any browser that connects to your rcl instance
-
-<br><br>
-
-<img src="{{BASE_PATH}}/assets/images/terminal-output.jpg">
-
----------------------------------
-
-<img src="{{BASE_PATH}}/assets/images/chrome-output.jpg">
-
----------------------------------
-
-
-<img src="{{BASE_PATH}}/assets/images/iphone-output.png">
+Logs will show up in your console, rcl (if running), and any client connected
+to your rcl instance.
 
 ---------------------------------
 
@@ -98,7 +139,7 @@ rcl.warn()
 
 {% endhighlight %}
 
-If you need to specify a different host to connect to
+#### specify a different host to connect to
 
 {% highlight js %}
 
@@ -106,10 +147,30 @@ rcl.connect('127.0.0.1','8888');
 
 {% endhighlight %}
 
+#### Configure log levels
+
+{% highlight js %}
+
+rcl.logLevel(rcl.INFO);
+
+{% endhighlight %}
+
+#### Turn off logging
+
+{% highlight js %}
+
+rcl.server = false; // || true
+rcl.client = false; // || true
+
+{% endhighlight %}
+
+
+
 ## Sprintf like formatting
 
 For console logging, the support is the native console's capabilities.
-For the terminal and web client, we use [string-format](https://github.com/jsoverson/string-format)
+Terminal and web client support use [string-format](https://github.com/jsoverson/string-format)
+syntax (mostly the same).
 
 -----------------------------------
 
@@ -149,34 +210,41 @@ See [grunt-strip](https://github.com/jsoverson/grunt-strip) for advanced configu
 
 -----------------------------------
 
-# Why use RCL?
+# FAQ
 
-### You are working in a hazardous environment.
+### Why use RCL?
 
-You are programming in a language stretched beyond its design across environments spanning
-years of standards and are delivering your source code directly to the client
-to be run outside of your control.
+You are programming in a language stretched beyond its design
+across environments spanning years of standards and are delivering
+your source code directly to the client to be run outside of your
+control.
 
-It's hard, but so, so awesome.
+It's hard but so, so awesome and you are a brilliant genius to have
+gotten this far.
 
-You are a brilliant monstrosity of a developer to have gotten this far. Now let's make it better.
+At the base, RCL is just a websocket bridge to log from your browser
+to another client. It could be anything, but right now is something
+like a server, another browser tab, or a mobile device.
 
-At the base, RCL is a websocket bridge to log from your browser to another client. It could be anything,
-but right now is something like a server, another browser tab, or a mobile device.
+RCL aggregates and classifies your log messages so that they are
+configurable in verbosity, using log4js on the server side for more
+flexibility.
 
-RCL aggregates and classifies your log messages so that they are configurable in verbosity, using
-log4js on the server side for even more flexibility.
+### Does my application break if rcl is not running?
 
-### But the client...
+No, you will still get console messages in your browser.
 
-One of the critical and unique aspects of JavaScript development
-is client side load time, performance, and support. Deploying with loads
-of logging bloats your distributable application and exposes
-potentially sensitive intent behind your code.
+### Why is this not recommended for production logging?
 
-This is one of our priorities and we developed `grunt-strip` to
-strip out all logging from your built files.
+Because logging will bloat your code, expose intent behind your logic,
+and be an extra burden on the client. But, that said, if production
+logging is important enough to you, then try it out and we'd love to
+hear how it works.
 
-`grunt-strip` allows you to strip out rcl commands, traditional console.log statements, **and** you
-can also configure it to strip out any other node, including your own debug libraries.
+Our primary frustration for large JavaScript projects is the lack of
+extensive logging during development and testing. This is a solution to
+that works very well and allows for fewer issues to occur in production.
 
+One avenue being considered is to have [grunt-strip](https://github.com/jsoverson/grunt-strip)
+support removing properties of nodes so that only certain log levels can
+be removed.
