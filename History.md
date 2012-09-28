@@ -1,5 +1,14 @@
 
-n.n.n / 2012-09-26 
+
+
+0.2.2 / 2012-09-28
+==================
+
+  * cleaned up. Passing the processed message to webclient
+  * cleaned up code
+  * changelog
+
+0.2.0 / 2012-09-26
 ==================
 
   * handling json passed logging
