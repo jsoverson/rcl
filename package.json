@@ -1,7 +1,7 @@
 {
   "name": "rcl",
-  "description": "A websocket bridge allowing persistent debug logging from client to server",
-  "version": "0.1.0",
+  "description": "Remote Client Logging",
+  "version": "0.2.2",
   "homepage": "https://github.com/joverson/rcl",
   "author": {
     "name": "Jarrod Overson",
