@@ -1,5 +1,5 @@
 
-0.3.0 / 2012-09-28
+0.2.3 / 2012-09-28
 ==================
 
   * added the ability to output the client source
