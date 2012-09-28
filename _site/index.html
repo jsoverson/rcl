@@ -3,16 +3,16 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>iog - Versatile JavaScript Logging &mdash; OneHealth Developer Blog</title>
+    <title>Remote Client Logging &mdash; RCL</title>
     
-    <meta name="author" content="OneHealth Solutions">
+    <meta name="author" content="Jarrod Overosn">
 
     <!--[if lt IE 9]>
     <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
 
     <link href="/assets/themes/twitter/bootstrap/less/bootstrap.less" rel="stylesheet/less" type="text/css">
-    <link href="/assets/themes/twitter/bootstrap/less/responsive.less" rel="stylesheet/less" type="text/css">
+    <!--<link href="/assets/themes/twitter/bootstrap/less/responsive.less" rel="stylesheet/less" type="text/css">-->
     <link href="/assets/themes/twitter/css/site.less" rel="stylesheet/less" type="text/css">
     <link href="/assets/themes/twitter/css/highlight.css" rel="stylesheet" type="text/css">
     <script src="/assets/themes/twitter/js/less-1.3.0.min.js" type="text/javascript"></script>
@@ -23,39 +23,101 @@
 
 <div class="masthead">
     <div class="container">
-        <h1 class="brand">iog</h1>
+        <h1 class="brand">RCL</h1>
 
-        <h2>Distributed JavaScript Logging</h2>
+        <h2>Remote Client Logging</h2>
     </div>
     <p>
-        <a href="http://github.com/jsoverson/iog" class="btn btn-inverse">Github Repo</a>
+        <a href="http://github.com/jsoverson/rcl" class="btn btn-inverse">Github Repo</a>
     </p>
 </div>
 
 <div class="container" id="main">
     <div class="content">
         
-<div class="page-header">
-  <h2>iog - Versatile JavaScript Logging </h2>
-</div>
-
 <div class="row">
   <div class="span12">
-    <article class='documentation'>
-  <h2>Overview</h2>
-  <section>
-    <h1 id='foo_overview'>foo overview</h1><div class='highlight'><pre><code class='js'><span class='kd'>function</span> <span class='nx'>bar</span><span class='p'>(){</span>
-  <span class='kd'>var</span> <span class='nx'>foo</span> <span class='o'>=</span> <span class='s1'>&#39;MONKEYS!&#39;</span><span class='p'>;</span>
-<span class='p'>}</span>
+    <h1 id='what_is_rcl'>What is RCL?</h1>
+
+<blockquote>
+<p>RCL is a browser library and server client that allows you to log extensively from a JavaScript application to a remote consumer. It also supports the build-time stripping of all logging code from an application</p>
+</blockquote>
+
+<h2 id='what_does_that_mean'>What does that mean?</h2>
+
+<p>It means loads of beautiful, configurable logging viewable from multiple clients all the while not bloating your production code.</p>
+<hr />
+<h1 id='how_do_i_use_rcl'>How do I use RCL?</h1>
+
+<h2 id='include_the_logging_client_in_your_application'>Include the logging client in your application</h2>
+<div class='highlight'><pre><code class='html'><span class='nt'>&lt;script </span><span class='na'>src=</span><span class='s'>&quot;path/to/rcl.js&quot;</span><span class='nt'>&gt;&lt;/script&gt;</span>
 </code></pre>
 </div>
-  </section>
-  </article><article class='documentation'>
-  <h2>Usage</h2>
-  <section>
-    <h1 id='foo_usage'>foo usage</h1>
-  </section>
-  </article>
+<p>For AMD/RequireJS, we recommend adding to your global deps.</p>
+<div class='highlight'><pre><code class='html'>require.config({
+  deps : [
+    &quot;path/to/rcl.js&quot;
+  ]
+})
+</code></pre>
+</div>
+<h2 id='install_the__npm_package'>Install the <code>rcl</code> npm package</h2>
+<div class='highlight'><pre><code class='bash'><span class='nv'>$ </span>sudo npm install -g rcl
+</code></pre>
+</div>
+<h2 id='run_'>Run <code>rcl</code></h2>
+<div class='highlight'><pre><code class='bash'><span class='nv'>$ </span>rcl
+Running <span class='s2'>&quot;rcl&quot;</span> task
+   info  - socket.io started
+<span class='o'>[</span>2012-09-25 09:14:48.863<span class='o'>]</span> <span class='o'>[</span>DEBUG<span class='o'>]</span> rcl - Connected on port 8888
+</code></pre>
+</div>
+<h2 id='log_to_your_hearts_content'>Log to your heart&#8217;s content</h2>
+<div class='highlight'><pre><code class='js'><span class='nx'>rcl</span><span class='p'>.</span><span class='nx'>info</span><span class='p'>(</span><span class='s2'>&quot;Hi, I am your app.&quot;</span><span class='p'>);</span>
+<span class='nx'>rcl</span><span class='p'>.</span><span class='nx'>debug</span><span class='p'>(</span><span class='s2'>&quot;Foo is now : %s&quot;</span><span class='p'>,</span> <span class='mi'>42</span><span class='p'>);</span>
+</code></pre>
+</div>
+<p>View your logging in your client console, and on your terminal, and any browser that connects to your rcl instance</p>
+<img src='/assets/images/terminal-output.jpg' /><img src='/assets/images/chrome-output.jpg' /><img src='/assets/images/iphone-output.png' /><hr />
+<h1 id='usage'>Usage</h1>
+
+<p>Include the source file in your client application and you can use the following commands immediately</p>
+<div class='highlight'><pre><code class='js'><span class='nx'>rcl</span><span class='p'>.</span><span class='nx'>info</span><span class='p'>()</span>
+<span class='nx'>rcl</span><span class='p'>.</span><span class='nx'>debug</span><span class='p'>()</span>
+<span class='nx'>rcl</span><span class='p'>.</span><span class='nx'>trace</span><span class='p'>()</span>
+<span class='nx'>rcl</span><span class='p'>.</span><span class='nx'>error</span><span class='p'>()</span>
+<span class='nx'>rcl</span><span class='p'>.</span><span class='nx'>warn</span><span class='p'>()</span>
+</code></pre>
+</div>
+<p>If you need to specify a different host to connect to</p>
+<div class='highlight'><pre><code class='js'><span class='nx'>rcl</span><span class='p'>.</span><span class='nx'>connect</span><span class='p'>(</span><span class='s1'>&#39;127.0.0.1&#39;</span><span class='p'>,</span><span class='s1'>&#39;8888&#39;</span><span class='p'>);</span>
+</code></pre>
+</div>
+<h2 id='sprintf_like_formatting'>Sprintf like formatting</h2>
+
+<p>For console logging, the support is the native console&#8217;s capabilities. For the terminal and web client, we use <code>[string-format](https://github.com/jsoverson/string-format)</code></p>
+<hr />
+<h2 id='why_use_rcl'>Why use RCL?</h2>
+
+<h4 id='you_are_working_in_a_hazardous_environment'>You are working in a hazardous environment.</h4>
+
+<p>You are programming in a language stretched beyond its design across environments spanning years of standards and are delivering your source code directly to the client to be run outside of your control.</p>
+
+<p>It&#8217;s hard, but so, so awesome.</p>
+
+<p>You are a brilliant monstrosity of a developer to have gotten this far. Now let&#8217;s make it better.</p>
+
+<p>At the base, RCL is a websocket bridge to log from your browser to another client. It could be anything, but right now is something like a server, another browser tab, or a mobile device.</p>
+
+<p>RCL aggregates and classifies your log messages so that they are configurable in verbosity, using log4js on the server side for even more flexibility.</p>
+
+<h2 id='but_the_client'>But the client&#8230;</h2>
+
+<p>One of the critical and unique aspects of JavaScript development is client side load time, performance, and support. Deploying with loads of logging bloats your distributable application and exposes potentially sensitive intent behind your code.</p>
+
+<p>This is one of our priorities and we developed <code>grunt-strip</code> to strip out all logging from your built files.</p>
+
+<p><code>grunt-strip</code> allows you to strip out rcl commands, traditional console.log statements, <strong>and</strong> you can also configure it to strip out any other node, including your own debug libraries.</p>
   </div>
 </div>
 
@@ -68,7 +130,7 @@
 
 <footer class="footer">
     <div class="container">
-        <p>&copy; Jarrod Overson</p>
+        <p>&copy; <a href="http://jarrodoverson.com/">Jarrod Overosn</a></p>
     </div>
 </footer>
 

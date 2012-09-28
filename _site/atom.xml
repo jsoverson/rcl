@@ -1,37 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
  
- <title>OneHealth Developer Blog</title>
- <link href="http://onehealth.github.com/atom.xml" rel="self"/>
- <link href="http://onehealth.github.com"/>
- <updated>2012-09-22T23:25:06-07:00</updated>
- <id>http://onehealth.github.com</id>
+ <title>RCL</title>
+ <link href="http://jsoverson.github.com/rcl/atom.xml" rel="self"/>
+ <link href="http://jsoverson.github.com/rcl"/>
+ <updated>2012-09-27T17:01:56-07:00</updated>
+ <id>http://jsoverson.github.com/rcl</id>
  <author>
-   <name>OneHealth Solutions</name>
-   <email>tech@onehealth.com</email>
+   <name>Jarrod Overosn</name>
+   <email>jsoverson@gmail.com</email>
  </author>
 
- 
- <entry>
-   <title>Usage</title>
-   <link href="http://onehealth.github.com/javascript/2002/01/01/usage"/>
-   <updated>2002-01-01T00:00:00-08:00</updated>
-   <id>http://onehealth.github.com/javascript/2002/01/01/usage</id>
-   <content type="html">&lt;h1 id='foo_usage'&gt;foo usage&lt;/h1&gt;</content>
- </entry>
- 
- <entry>
-   <title>Overview</title>
-   <link href="http://onehealth.github.com/javascript/2001/01/01/overview"/>
-   <updated>2001-01-01T00:00:00-08:00</updated>
-   <id>http://onehealth.github.com/javascript/2001/01/01/overview</id>
-   <content type="html">&lt;h1 id='foo_overview'&gt;foo overview&lt;/h1&gt;
-&lt;div class='highlight'&gt;&lt;pre&gt;&lt;code class='js'&gt;&lt;span class='kd'&gt;function&lt;/span&gt; &lt;span class='nx'&gt;bar&lt;/span&gt;&lt;span class='p'&gt;(){&lt;/span&gt;
-  &lt;span class='kd'&gt;var&lt;/span&gt; &lt;span class='nx'&gt;foo&lt;/span&gt; &lt;span class='o'&gt;=&lt;/span&gt; &lt;span class='s1'&gt;&amp;#39;MONKEYS!&amp;#39;&lt;/span&gt;&lt;span class='p'&gt;;&lt;/span&gt;
-&lt;span class='p'&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;</content>
- </entry>
  
  
 </feed>

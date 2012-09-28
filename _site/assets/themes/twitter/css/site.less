@@ -11,7 +11,7 @@
 
 /* Override some defaults */
 html, body {
-  background-color: hsl(199, 16%, 55%);
+  background-color:  hsl(0, 0%, 91%);
 }
 .navbar {
   margin-bottom: 0;
@@ -36,12 +36,8 @@ html, body {
 
 /* The white background content wrapper */
 .content {
-  background-color: hsl(210, 11%, 86%);
   padding: 20px;
   margin: 20px -20px; /* negative indent the amount of the padding to maintain the grid system */
-  -webkit-border-radius: 6px;
-     -moz-border-radius: 6px;
-          border-radius: 6px;
 }
 
 /* Page header tweaks */
@@ -121,12 +117,15 @@ body > .navbar .brand:hover {
   text-align: center;
   text-shadow: 0 1px 3px rgba(0,0,0,.4), 0 0 30px rgba(0,0,0,.075);
 //  .gradient(top,hsl(0, 0%, 7%),#61a1bd);
-  .gradient(top,hsl(0, 0%, 100%),#e6e6e6);
-  /*
+  //.gradient(top,hsl(0, 0%, 100%),#e6e6e6);
+
+  .gradient(top, hsl(206, 100%, 9%), hsl(222, 11%, 23%));
+
+
   -webkit-box-shadow: inset 0 3px 7px rgba(0,0,0,.2), inset 0 -3px 7px rgba(0,0,0,.2);
   -moz-box-shadow: inset 0 3px 7px rgba(0,0,0,.2), inset 0 -3px 7px rgba(0,0,0,.2);
   box-shadow: inset 0 3px 7px rgba(0,0,0,.2), inset 0 -3px 7px rgba(0,0,0,.2);
-  */
+
   padding: 70px 0 20px;
   margin:0;
   color: #fff;
@@ -135,12 +134,12 @@ body > .navbar .brand:hover {
     font-weight: bold;
     line-height: 1;
     letter-spacing: -2px;
-    color: hsl(0,0%,44%);
+    color: hsl(0,0%,77%);
   }
   h2 {
     font-weight: 200;
     margin-bottom: 5px;
-    color: hsl(201, 15%, 42%);
+    color: hsl(0, 0%, 77%);
   }
 }
 
