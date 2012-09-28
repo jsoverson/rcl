@@ -139,6 +139,17 @@ rcl.warn()
 
 {% endhighlight %}
 
+#### Getting the client source file
+
+You can download it at [raw.github.com/jsoverson/rcl/master/src/rcl.js](https://raw.github.com/jsoverson/rcl/master/src/rcl.js)
+or you can output the version that matches your npm install via
+
+{% highlight bash %}
+
+$ rcl rcl.js > path/for/rcl.js
+
+{% endhighlight %}
+
 #### Specify a different host to connect to
 
 {% highlight js %}
