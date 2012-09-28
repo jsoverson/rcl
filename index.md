@@ -11,10 +11,7 @@ tagline:
 > application to a remote consumer. It also supports the build-time stripping of all logging code
 > from an application
 
-## What does that mean?
-
-It means loads of beautiful, configurable logging viewable
-from multiple clients all the while not bloating your production code.
+It is loads of beautiful, configurable logging viewable from multiple clients all the while not bloating your production code.
 
 ---------------------------------
 
@@ -71,9 +68,16 @@ rcl.debug("Foo is now : %s", 42);
 View your logging in your client console, and on your terminal,
 and any browser that connects to your rcl instance
 
+<br><br>
+
 <img src="{{BASE_PATH}}/assets/images/terminal-output.jpg">
 
+---------------------------------
+
 <img src="{{BASE_PATH}}/assets/images/chrome-output.jpg">
+
+---------------------------------
+
 
 <img src="{{BASE_PATH}}/assets/images/iphone-output.png">
 
@@ -105,13 +109,49 @@ rcl.connect('127.0.0.1','8888');
 ## Sprintf like formatting
 
 For console logging, the support is the native console's capabilities.
-For the terminal and web client, we use `[string-format](https://github.com/jsoverson/string-format)`
+For the terminal and web client, we use [string-format](https://github.com/jsoverson/string-format)
 
 -----------------------------------
 
-## Why use RCL?
+# How to strip logging
 
-#### You are working in a hazardous environment.
+The grunt task to strip logging has been extracted and distributed as its own
+package, [grunt-strip](https://github.com/jsoverson/grunt-strip). You will find
+more documentation there.
+
+Grunt-strip is designed to be run as part of a build chain, probably after
+concatenation and before minification.
+
+## Example grunt configuration
+
+{% highlight js %}
+
+grunt.initConfig({
+  /*
+   * Configure a 'strip' block like this
+   */
+
+  strip : {
+    main : {
+      src : 'src/main.js',
+      dest : 'build/main.built.js',
+      nodes : ['rcl','console']
+    }
+  }
+});
+
+// Load grunt-strip tasks.
+grunt.loadTasks('grunt-strip');
+
+{% endhighlight %}
+
+See [grunt-strip](https://github.com/jsoverson/grunt-strip) for advanced configurations
+
+-----------------------------------
+
+# Why use RCL?
+
+### You are working in a hazardous environment.
 
 You are programming in a language stretched beyond its design across environments spanning
 years of standards and are delivering your source code directly to the client
@@ -127,7 +167,7 @@ but right now is something like a server, another browser tab, or a mobile devic
 RCL aggregates and classifies your log messages so that they are configurable in verbosity, using
 log4js on the server side for even more flexibility.
 
-## But the client...
+### But the client...
 
 One of the critical and unique aspects of JavaScript development
 is client side load time, performance, and support. Deploying with loads

@@ -43,9 +43,7 @@
 <p>RCL is a browser library and server client that allows you to log extensively from a JavaScript application to a remote consumer. It also supports the build-time stripping of all logging code from an application</p>
 </blockquote>
 
-<h2 id='what_does_that_mean'>What does that mean?</h2>
-
-<p>It means loads of beautiful, configurable logging viewable from multiple clients all the while not bloating your production code.</p>
+<p>It is loads of beautiful, configurable logging viewable from multiple clients all the while not bloating your production code.</p>
 <hr />
 <h1 id='how_do_i_use_rcl'>How do I use RCL?</h1>
 
@@ -78,7 +76,7 @@ Running <span class='s2'>&quot;rcl&quot;</span> task
 </code></pre>
 </div>
 <p>View your logging in your client console, and on your terminal, and any browser that connects to your rcl instance</p>
-<img src='/assets/images/terminal-output.jpg' /><img src='/assets/images/chrome-output.jpg' /><img src='/assets/images/iphone-output.png' /><hr />
+<br /><img src='/assets/images/terminal-output.jpg' /><hr /><img src='/assets/images/chrome-output.jpg' /><hr /><img src='/assets/images/iphone-output.png' /><hr />
 <h1 id='usage'>Usage</h1>
 
 <p>Include the source file in your client application and you can use the following commands immediately</p>
@@ -95,11 +93,38 @@ Running <span class='s2'>&quot;rcl&quot;</span> task
 </div>
 <h2 id='sprintf_like_formatting'>Sprintf like formatting</h2>
 
-<p>For console logging, the support is the native console&#8217;s capabilities. For the terminal and web client, we use <code>[string-format](https://github.com/jsoverson/string-format)</code></p>
+<p>For console logging, the support is the native console&#8217;s capabilities. For the terminal and web client, we use <a href='https://github.com/jsoverson/string-format'>string-format</a></p>
 <hr />
-<h2 id='why_use_rcl'>Why use RCL?</h2>
+<h1 id='how_to_strip_logging'>How to strip logging</h1>
 
-<h4 id='you_are_working_in_a_hazardous_environment'>You are working in a hazardous environment.</h4>
+<p>The grunt task to strip logging has been extracted and distributed as its own package, <a href='https://github.com/jsoverson/grunt-strip'>grunt-strip</a>. You will find more documentation there.</p>
+
+<p>Grunt-strip is designed to be run as part of a build chain, probably after concatenation and before minification.</p>
+
+<h2 id='example_grunt_configuration'>Example grunt configuration</h2>
+<div class='highlight'><pre><code class='js'><span class='nx'>grunt</span><span class='p'>.</span><span class='nx'>initConfig</span><span class='p'>({</span>
+  <span class='cm'>/*</span>
+<span class='cm'>   * Configure a &#39;strip&#39; block like this</span>
+<span class='cm'>   */</span>
+
+  <span class='nx'>strip</span> <span class='o'>:</span> <span class='p'>{</span>
+    <span class='nx'>main</span> <span class='o'>:</span> <span class='p'>{</span>
+      <span class='nx'>src</span> <span class='o'>:</span> <span class='s1'>&#39;src/main.js&#39;</span><span class='p'>,</span>
+      <span class='nx'>dest</span> <span class='o'>:</span> <span class='s1'>&#39;build/main.built.js&#39;</span><span class='p'>,</span>
+      <span class='nx'>nodes</span> <span class='o'>:</span> <span class='p'>[</span><span class='s1'>&#39;rcl&#39;</span><span class='p'>,</span><span class='s1'>&#39;console&#39;</span><span class='p'>]</span>
+    <span class='p'>}</span>
+  <span class='p'>}</span>
+<span class='p'>});</span>
+
+<span class='c1'>// Load grunt-strip tasks.</span>
+<span class='nx'>grunt</span><span class='p'>.</span><span class='nx'>loadTasks</span><span class='p'>(</span><span class='s1'>&#39;grunt-strip&#39;</span><span class='p'>);</span>
+</code></pre>
+</div>
+<p>See <a href='https://github.com/jsoverson/grunt-strip'>grunt-strip</a> for advanced configurations</p>
+<hr />
+<h1 id='why_use_rcl'>Why use RCL?</h1>
+
+<h3 id='you_are_working_in_a_hazardous_environment'>You are working in a hazardous environment.</h3>
 
 <p>You are programming in a language stretched beyond its design across environments spanning years of standards and are delivering your source code directly to the client to be run outside of your control.</p>
 
@@ -111,7 +136,7 @@ Running <span class='s2'>&quot;rcl&quot;</span> task
 
 <p>RCL aggregates and classifies your log messages so that they are configurable in verbosity, using log4js on the server side for even more flexibility.</p>
 
-<h2 id='but_the_client'>But the client&#8230;</h2>
+<h3 id='but_the_client'>But the client&#8230;</h3>
 
 <p>One of the critical and unique aspects of JavaScript development is client side load time, performance, and support. Deploying with loads of logging bloats your distributable application and exposes potentially sensitive intent behind your code.</p>
 
