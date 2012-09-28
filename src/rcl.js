@@ -3,16 +3,16 @@
   "use strict";
 
   var name = 'rcl',
-      storedLevel = root.localStorage ? parseInt(root.localStorage.getItem(name + '.level') || 0,10) : 0;
+    storedLevel = root.localStorage ? parseInt(root.localStorage.getItem(name + '.level') || 0,10) : 0;
 
   function getCaller() {
     try { throw new Error(''); } catch(err) {
       var depth = 5,
-          stack = err.stack.split("\n"),
-          caller = stack[depth],
-          callerParts = caller.match(/\s*\(?([^\s\)]*)\)?$/),
-          original = callerParts[1],
-          parts = original.match(/^.*([\/<][^\/>]*>?):(\d*):(\d*)$/);
+        stack = err.stack.split("\n"),
+        caller = stack[depth],
+        callerParts = caller.match(/\s*\(?([^\s\)]*)\)?$/),
+        original = callerParts[1],
+        parts = original.match(/^.*([\/<][^\/>]*>?):(\d*):(\d*)$/);
 
       return {
         original : original,
@@ -25,12 +25,29 @@
 
   function stringify(obj) {
     if (typeof obj !== 'object') return obj;
-    var cache = [], keyMap = [];
+
+    var cache = [], keyMap = [], tempArray, index;
+
     var string = JSON.stringify(obj, function(key, value) {
+      // Let json stringify falsy values
+      if (!value) return value;
+
+      // If we're a node
       if (value instanceof Node) return '[ Node ]';
+
+      // If we're a window (logic stolen from jQuery)
+      if (value.window && value.window == value.window.window) return '[ Window ]';
+
+      // Simple function reporting
+      if (typeof value === 'function') return '[ Function ]';
+
       if (typeof value === 'object' && value !== null) {
-        var index;
+
+        // Check to see if we have a pseudo array that can be converted
+        if (value.length && (tempArray = Array.prototype.slice.call(value)).length === value.length) value = tempArray
+
         if (index = cache.indexOf(value) !== -1) {
+          // If we have it in cache, report the circle with the key we first found it in
           return '[ Circular {' + (keyMap[index] || 'root') + '} ]';
         }
         cache.push(value);
@@ -43,21 +60,21 @@
 
   root[name] = (function(){
     var socket,
-        cache = [],
-        api = {
-          _logLevel : storedLevel,
-          client    : true,
-          server    : true,
-          loaded    : false
-        },
-        isLoading = false,
-        levels = [
-          'trace',
-          'debug',
-          'info',
-          'warn',
-          'error'
-        ];
+      cache = [],
+      api = {
+        _logLevel : storedLevel,
+        client    : true,
+        server    : true,
+        loaded    : false
+      },
+      isLoading = false,
+      levels = [
+        'trace',
+        'debug',
+        'info',
+        'warn',
+        'error'
+      ];
 
     function includeSocketIo() {
       if (isLoading) return;
@@ -151,3 +168,4 @@
   })();
 
 })(this, console);
+
