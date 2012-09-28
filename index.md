@@ -139,7 +139,7 @@ rcl.warn()
 
 {% endhighlight %}
 
-#### specify a different host to connect to
+#### Specify a different host to connect to
 
 {% highlight js %}
 
