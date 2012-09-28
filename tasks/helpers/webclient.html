@@ -32,20 +32,22 @@
 <body>
 <h1>RCL Web Client. <button id="test-connection">test connection</button></h1>
 <div id="log"></div>
+
 <script>
     log = document.getElementById('log');
     var socket = io.connect(location.origin);
     socket.on('connect', function () {
-        console.log(arguments);
         socket.on('client:rcl', function (data) {
-            var p = document.createElement('p');
-            log.appendChild(p);
-            var date = new Date();
-            var time = date.toDateString() + ' ' + date.toLocaleTimeString();
-            var location = ['L', data.caller.line, ':', data.caller.col].join('');
+            var p = document.createElement('p'),
+                date = new Date(),
+                time = date.toDateString() + ' ' + date.toLocaleTimeString(),
+                location = ['L', data.caller.line, ':', data.caller.col].join('');
+
             for (var i = 0; i < data.args.length; i++) {
                 if (typeof data.args[i] === 'object') data.args[i] = JSON.stringify(data.args[i])
             }
+            log.appendChild(p);
+
             p.innerText = data.caller.file; // super cheap html escaping
             data.caller.file = p.innerHTML; // almost feels naughty. Someone will yell at me.
             p.innerHTML = '<span class="level-' + data.level + '">' +
