@@ -61,7 +61,7 @@ to your rcl instance.
 
 # Usage
 
-Include the source file in your client application and
+Include the client source file in your client application and
 you can use the following commands immediately
 
 ```js
@@ -71,6 +71,17 @@ rcl.debug()
 rcl.trace()
 rcl.error()
 rcl.warn()
+
+```
+
+#### Getting the client source file
+
+You can download it at [raw.github.com/jsoverson/rcl/master/src/rcl.js](https://raw.github.com/jsoverson/rcl/master/src/rcl.js)
+or you can output the version that matches your npm install via
+
+```bash
+
+$ rcl rcl.js > path/for/rcl.js
 
 ```
 
@@ -98,8 +109,6 @@ rcl.server = false; // || true
 rcl.client = false; // || true
 
 ```
-
-
 
 ## Sprintf like formatting
 
