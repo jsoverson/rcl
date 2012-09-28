@@ -2,7 +2,7 @@
   "name": "rcl",
   "description": "Remote Client Logging",
   "version": "0.2.2",
-  "homepage": "https://github.com/joverson/rcl",
+  "homepage": "https://jsoverson.github.com/rcl",
   "author": {
     "name": "Jarrod Overson",
     "email": "jsoverson@gmail.com",
@@ -10,15 +10,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/joverson/rcl.git"
+    "url": "git://github.com/jsoverson/rcl.git"
   },
   "bugs": {
-    "url": "https://github.com/joverson/rcl/issues"
+    "url": "https://github.com/jsoverson/rcl/issues"
   },
   "licenses": [
     {
       "type": "MIT",
-      "url": "https://github.com/joverson/rcl/blob/master/LICENSE-MIT"
+      "url": "https://github.com/jsoverson/rcl/blob/master/LICENSE-MIT"
     }
   ],
   "main": "Gruntfile.js",
