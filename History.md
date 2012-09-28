@@ -1,5 +1,15 @@
 
+0.3.0 / 2012-09-28
+==================
 
+  * added the ability to output the client source
+  * Added doc for rcl.js client command
+  * Fixed formatting
+  * updated homepage
+  * bumping version
+  * Updated readme with some new faq answers
+  * updated changelog
+  * updated readme
 
 0.2.2 / 2012-09-28
 ==================
