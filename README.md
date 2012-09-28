@@ -206,8 +206,8 @@ In lieu of a formal styleguide, take care to maintain the existing coding style.
 
 ## Release History
 
-v0.2.2 Fixed new use cases
-v0.2.0 Initial release
+- v0.2.2 Fixed new use cases
+- v0.2.0 Initial release
 
 ## License
 Copyright (c) 2012 Jarrod Overson  
