@@ -1,7 +1,7 @@
 {
   "name": "rcl",
   "description": "Remote Client Logging",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "homepage": "https://jsoverson.github.com/rcl",
   "author": {
     "name": "Jarrod Overson",
