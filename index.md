@@ -248,3 +248,21 @@ that works very well and allows for fewer issues to occur in production.
 One avenue being considered is to have [grunt-strip](https://github.com/jsoverson/grunt-strip)
 support removing properties of nodes so that only certain log levels can
 be removed.
+
+### `rcl` as a grunt plugin
+
+RCL was written with grunt so, by convenience, can be used as a grunt plugin.
+No special functionality exists, but you can specify a custom port via an `rcl` config
+
+{% highlight js %}
+
+rcl : {
+  port : 3000
+}
+
+{% endhighlight %}
+
+### log4js configuration
+
+Please visit the project page for documentation [log4js-node](https://github.com/nomiddlename/log4js-node)
+
