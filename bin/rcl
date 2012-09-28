@@ -1,4 +1,17 @@
 #!/usr/bin/env node
-require('grunt').npmTasks('rcl').cli({
-  gruntfile : __dirname + '/../Gruntfile.js'
-});
+
+var runner = process.argv.shift(),
+    bin    = process.argv.shift();
+
+if (process.argv.indexOf('rcl.js') !== -1) {
+  var fs = require('fs');
+  console.log(fs.readFileSync(__dirname + '/../src/rcl.js').toString());
+} else {
+  var grunt = require('grunt');
+
+  grunt.npmTasks('rcl').cli({
+    gruntfile : __dirname + '/../Gruntfile.js'
+  });
+}
+
+
