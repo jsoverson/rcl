@@ -14,7 +14,8 @@ A websocket bridge allowing persistent debug logging from client to server/local
 
 ```
 
-For AMD/RequireJS, It is recommended that you add it to your global `deps` config.
+For AMD/RequireJS, It is still recommended that you add it as a script
+source for easy removal with `grunt-preprocess`
 
 ```js
 
@@ -120,33 +121,73 @@ syntax (mostly the same).
 
 # How to strip logging
 
-The grunt task to strip logging has been extracted and distributed as its own
-package, [grunt-strip](https://github.com/jsoverson/grunt-strip). You will find
-more documentation there.
+Two grunt tasks have been extracted from this project and packaged independently,
+[grunt-strip](https://github.com/jsoverson/grunt-strip) and
+[grunt-preprocess](https://github.com/onehealth/grunt-preprocess). Both have more
+documentation at their project sites, but basic usage is below.
 
-Grunt-strip is designed to be run as part of a build chain, probably after
-concatenation and before minification.
+Both are designed to be run as part of a build chain, usually after concatenation
+and before minification.
 
-## Example grunt configuration
+### Installing grunt tasks
+
+Add `grunt-strip` and `grunt-preprocess` to your package.json's dependencies hash, or run
+
+```bash
+
+$ npm install --save grunt-strip grunt-preprocess
+
+```
+
+Remember to load these tasks as part of your gruntfile
 
 ```js
 
-grunt.initConfig({
-  /*
-   * Configure a 'strip' block like this
-   */
+grunt.npmTasks('grunt-strip');
+grunt.npmTasks('grunt-preprocess');
 
-  strip : {
-    main : {
-      src : 'src/main.js',
-      dest : 'build/main.built.js',
-      nodes : ['rcl','console']
-    }
+```
+
+### Removing the script source using `grunt-preprocess`
+
+#### Syntax
+
+```html
+
+<!-- exclude -->
+<script src="path/to/rcl.js"></script>
+<!-- endexclude -->
+
+```
+
+#### Configuration in your Gruntfile
+
+```js
+
+preprocess : {
+  main : {
+    src : 'src/index.html',
+    dest : 'build/index.html'
   }
-});
+}
 
-// Load grunt-strip tasks.
-grunt.loadTasks('grunt-strip');
+```
+
+See [grunt-preprocess](https://github.com/onehealth/grunt-preprocess) for advanced configurations
+
+### Removing the log statements using `grunt-strip`
+
+#### Example grunt configuration
+
+```js
+
+strip : {
+  main : {
+    src : 'src/main.js',
+    dest : 'build/main.built.js',
+    nodes : ['rcl','console']
+  }
+}
 
 ```
 
