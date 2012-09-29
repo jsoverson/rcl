@@ -186,6 +186,8 @@ documentation at their project sites, but basic usage is below.
 Both are designed to be run as part of a build chain, usually after concatenation
 and before minification.
 
+For more information about Grunt, please visit [gruntjs.com](http://gruntjs.com)
+
 ### Installing grunt tasks
 
 Add `grunt-strip` and `grunt-preprocess` to your package.json's dependencies hash, or run
