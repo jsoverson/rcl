@@ -22,8 +22,9 @@ application to a remote consumer.
   <div class="bullet span4">
   <h2>Development priority</h2>
     <p>
-      <a href="https://github.com/jsoverson/grunt-strip"><code>grunt-strip</code></a>
-      was developed in parallel to remove all your logging before production deployment.
+      <a href="https://github.com/jsoverson/grunt-strip"><code>grunt-strip</code></a> and
+      <a href="https://github.com/onehealth/grunt-preprocess"><code>grunt-preprocess</code></a>
+      were developed in parallel to remove all your logging before production deployment.
     </p>
   </div>
 </section>
@@ -78,9 +79,6 @@ application to a remote consumer.
 <script src="path/to/rcl.js"></script>
 
 {% endhighlight %}
-
-For AMD/RequireJS, It is still recommended that you add it as a script
-source for easy removal with `grunt-preprocess`
 
 ## Install the `rcl` npm package
 
@@ -172,7 +170,7 @@ rcl.client = false; // || true
 
 For console logging, the support is the native console's capabilities.
 Terminal and web client support use [string-format](https://github.com/jsoverson/string-format)
-syntax (mostly the same).
+syntax.
 
 -----------------------------------
 
@@ -282,12 +280,12 @@ No, you will still get console messages in your browser.
 
 Because logging will bloat your code, expose intent behind your logic,
 and be an extra burden on the client. But, that said, if production
-logging is important enough to you, then try it out and we'd love to
-hear how it works.
+logging is important enough to you, then try it out and tell us all
+how it works.
 
 Our primary frustration for large JavaScript projects is the lack of
-extensive logging during development and testing. This is a solution to
-that works very well and allows for fewer issues to occur in production.
+extensive logging during development and testing. Better transparency
+in development leads to fewer bugs in production.
 
 One avenue being considered is to have [grunt-strip](https://github.com/jsoverson/grunt-strip)
 support removing properties of nodes so that only certain log levels can
@@ -296,7 +294,7 @@ be removed.
 ### `rcl` as a grunt plugin
 
 RCL was written with grunt so, by convenience, can be used as a grunt plugin.
-No special functionality exists, but you can specify a custom port via an `rcl` config
+No fancy functionality exists, but you can specify a custom port via an `rcl` config
 
 {% highlight js %}
 

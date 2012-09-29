@@ -62,8 +62,9 @@ application to a remote consumer.
   <div class='bullet span4'>
   <h2>Development priority</h2>
     <p>
-      <a href='https://github.com/jsoverson/grunt-strip'><code>grunt-strip</code></a>
-      was developed in parallel to remove all your logging before production deployment.
+      <a href='https://github.com/jsoverson/grunt-strip'><code>grunt-strip</code></a> and
+      <a href='https://github.com/onehealth/grunt-preprocess'><code>grunt-preprocess</code></a>
+      were developed in parallel to remove all your logging before production deployment.
     </p>
   </div>
 </section><section class='code-example row'>
@@ -100,8 +101,6 @@ application to a remote consumer.
 <div class='highlight'><pre><code class='html'><span class='nt'>&lt;script </span><span class='na'>src=</span><span class='s'>&quot;path/to/rcl.js&quot;</span><span class='nt'>&gt;&lt;/script&gt;</span>
 </code></pre>
 </div>
-<p>For AMD/RequireJS, It is still recommended that you add it as a script source for easy removal with <code>grunt-preprocess</code></p>
-
 <h2 id='install_the__npm_package'>Install the <code>rcl</code> npm package</h2>
 <div class='highlight'><pre><code class='bash'><span class='nv'>$ </span>sudo npm install -g rcl
 </code></pre>
@@ -151,7 +150,7 @@ Running <span class='s2'>&quot;rcl&quot;</span> task
 </div>
 <h2 id='sprintf_like_formatting'>Sprintf like formatting</h2>
 
-<p>For console logging, the support is the native console&#8217;s capabilities. Terminal and web client support use <a href='https://github.com/jsoverson/string-format'>string-format</a> syntax (mostly the same).</p>
+<p>For console logging, the support is the native console&#8217;s capabilities. Terminal and web client support use <a href='https://github.com/jsoverson/string-format'>string-format</a> syntax.</p>
 <hr />
 <h1 id='how_to_strip_logging'>How to strip logging</h1>
 
@@ -223,15 +222,15 @@ Running <span class='s2'>&quot;rcl&quot;</span> task
 
 <h3 id='why_is_this_not_recommended_for_production_logging'>Why is this not recommended for production logging?</h3>
 
-<p>Because logging will bloat your code, expose intent behind your logic, and be an extra burden on the client. But, that said, if production logging is important enough to you, then try it out and we&#8217;d love to hear how it works.</p>
+<p>Because logging will bloat your code, expose intent behind your logic, and be an extra burden on the client. But, that said, if production logging is important enough to you, then try it out and tell us all how it works.</p>
 
-<p>Our primary frustration for large JavaScript projects is the lack of extensive logging during development and testing. This is a solution to that works very well and allows for fewer issues to occur in production.</p>
+<p>Our primary frustration for large JavaScript projects is the lack of extensive logging during development and testing. Better transparency in development leads to fewer bugs in production.</p>
 
 <p>One avenue being considered is to have <a href='https://github.com/jsoverson/grunt-strip'>grunt-strip</a> support removing properties of nodes so that only certain log levels can be removed.</p>
 
 <h3 id='_as_a_grunt_plugin'><code>rcl</code> as a grunt plugin</h3>
 
-<p>RCL was written with grunt so, by convenience, can be used as a grunt plugin. No special functionality exists, but you can specify a custom port via an <code>rcl</code> config</p>
+<p>RCL was written with grunt so, by convenience, can be used as a grunt plugin. No fancy functionality exists, but you can specify a custom port via an <code>rcl</code> config</p>
 <div class='highlight'><pre><code class='js'><span class='nx'>rcl</span> <span class='o'>:</span> <span class='p'>{</span>
   <span class='nx'>port</span> <span class='o'>:</span> <span class='mi'>3000</span>
 <span class='p'>}</span>
