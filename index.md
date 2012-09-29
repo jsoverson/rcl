@@ -293,8 +293,10 @@ be removed.
 
 ### `rcl` as a grunt plugin
 
-RCL was written with grunt so, by convenience, can be used as a grunt plugin.
-No fancy functionality exists, but you can specify a custom port via an `rcl` config
+RCL was born initially as a grunt plugin, but turned out to be better
+off as being on its own. It remains written with grunt so, by
+convenience, can be used as a grunt task with configuration. No fancy
+functionality exists, but you can specify a custom port via an `rcl` config
 
 {% highlight js %}
 
