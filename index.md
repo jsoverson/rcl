@@ -32,7 +32,7 @@ application to a remote consumer.
 
 <section class='code-example row'>
   <h2>Use <code>rcl</code></h2>
-  <img src="{{BASE_PATH}}/assets/images/code-example.png" alt="Code example">
+  <img src="{{BASE_PATH}}/assets/images/sublime-example.png" alt="Code example">
 </section>
 
 
