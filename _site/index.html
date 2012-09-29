@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <title>Remote Client Logging &mdash; RCL</title>
     
-    <meta name="author" content="Jarrod Overosn">
+    <meta name="author" content="Jarrod Overson">
 
     <!--[if lt IE 9]>
     <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
@@ -17,8 +17,14 @@
     <link href="/assets/themes/twitter/css/highlight.css" rel="stylesheet" type="text/css">
     <link href="/assets/themes/twitter/bootstrap/less/bootstrap.css" rel="stylesheet" type="text/css">
     <script src="/assets/themes/twitter/js/less-1.3.0.min.js" type="text/javascript"></script>
-    <script src="http://code.jquery.com/jquery-1.8.2.min.js"></script>
-    <script src="https://raw.github.com/twitter/bootstrap/master/js/bootstrap-modal.js"></script>
+    <script>
+        var _gaq = _gaq || [];_gaq.push(['_setAccount', 'UA-22728809-1']);_gaq.push(['_trackPageview']);
+        (function() {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        })();
+    </script>
 </head>
 
 <body>
@@ -94,14 +100,8 @@ application to a remote consumer.
 <div class='highlight'><pre><code class='html'><span class='nt'>&lt;script </span><span class='na'>src=</span><span class='s'>&quot;path/to/rcl.js&quot;</span><span class='nt'>&gt;&lt;/script&gt;</span>
 </code></pre>
 </div>
-<p>For AMD/RequireJS, It is recommended that you add it to your global <code>deps</code> config.</p>
-<div class='highlight'><pre><code class='js'><span class='nx'>require</span><span class='p'>.</span><span class='nx'>config</span><span class='p'>({</span>
-  <span class='nx'>deps</span> <span class='o'>:</span> <span class='p'>[</span>
-    <span class='s2'>&quot;path/to/rcl.js&quot;</span>
-  <span class='p'>]</span>
-<span class='p'>})</span>
-</code></pre>
-</div>
+<p>For AMD/RequireJS, It is still recommended that you add it as a script source for easy removal with <code>grunt-preprocess</code></p>
+
 <h2 id='install_the__npm_package'>Install the <code>rcl</code> npm package</h2>
 <div class='highlight'><pre><code class='bash'><span class='nv'>$ </span>sudo npm install -g rcl
 </code></pre>
@@ -130,7 +130,13 @@ Running <span class='s2'>&quot;rcl&quot;</span> task
 <span class='nx'>rcl</span><span class='p'>.</span><span class='nx'>warn</span><span class='p'>()</span>
 </code></pre>
 </div>
-<h4 id='specify_a_different_host_to_connect_to'>specify a different host to connect to</h4>
+<h4 id='getting_the_client_source_file'>Getting the client source file</h4>
+
+<p>You can download it at <a href='https://raw.github.com/jsoverson/rcl/master/src/rcl.js'>raw.github.com/jsoverson/rcl/master/src/rcl.js</a> or you can output the version that matches your npm install via</p>
+<div class='highlight'><pre><code class='bash'><span class='nv'>$ </span>rcl rcl.js &gt; path/for/rcl.js
+</code></pre>
+</div>
+<h4 id='specify_a_different_host_to_connect_to'>Specify a different host to connect to</h4>
 <div class='highlight'><pre><code class='js'><span class='nx'>rcl</span><span class='p'>.</span><span class='nx'>connect</span><span class='p'>(</span><span class='s1'>&#39;127.0.0.1&#39;</span><span class='p'>,</span><span class='s1'>&#39;8888&#39;</span><span class='p'>);</span>
 </code></pre>
 </div>
@@ -149,27 +155,50 @@ Running <span class='s2'>&quot;rcl&quot;</span> task
 <hr />
 <h1 id='how_to_strip_logging'>How to strip logging</h1>
 
-<p>The grunt task to strip logging has been extracted and distributed as its own package, <a href='https://github.com/jsoverson/grunt-strip'>grunt-strip</a>. You will find more documentation there.</p>
+<p>Two grunt tasks have been extracted from this project and packaged independently, <a href='https://github.com/jsoverson/grunt-strip'>grunt-strip</a> and <a href='https://github.com/onehealth/grunt-preprocess'>grunt-preprocess</a>. Both have more documentation at their project sites, but basic usage is below.</p>
 
-<p>Grunt-strip is designed to be run as part of a build chain, probably after concatenation and before minification.</p>
+<p>Both are designed to be run as part of a build chain, usually after concatenation and before minification.</p>
 
-<h2 id='example_grunt_configuration'>Example grunt configuration</h2>
-<div class='highlight'><pre><code class='js'><span class='nx'>grunt</span><span class='p'>.</span><span class='nx'>initConfig</span><span class='p'>({</span>
-  <span class='cm'>/*</span>
-<span class='cm'>   * Configure a &#39;strip&#39; block like this</span>
-<span class='cm'>   */</span>
+<h3 id='installing_grunt_tasks'>Installing grunt tasks</h3>
 
-  <span class='nx'>strip</span> <span class='o'>:</span> <span class='p'>{</span>
-    <span class='nx'>main</span> <span class='o'>:</span> <span class='p'>{</span>
-      <span class='nx'>src</span> <span class='o'>:</span> <span class='s1'>&#39;src/main.js&#39;</span><span class='p'>,</span>
-      <span class='nx'>dest</span> <span class='o'>:</span> <span class='s1'>&#39;build/main.built.js&#39;</span><span class='p'>,</span>
-      <span class='nx'>nodes</span> <span class='o'>:</span> <span class='p'>[</span><span class='s1'>&#39;rcl&#39;</span><span class='p'>,</span><span class='s1'>&#39;console&#39;</span><span class='p'>]</span>
-    <span class='p'>}</span>
+<p>Add <code>grunt-strip</code> and <code>grunt-preprocess</code> to your package.json&#8217;s dependencies hash, or run</p>
+<div class='highlight'><pre><code class='bash'><span class='nv'>$ </span>npm install --save grunt-strip grunt-preprocess
+</code></pre>
+</div>
+<p>Remember to load these tasks as part of your gruntfile</p>
+<div class='highlight'><pre><code class='js'><span class='nx'>grunt</span><span class='p'>.</span><span class='nx'>npmTasks</span><span class='p'>(</span><span class='s1'>&#39;grunt-strip&#39;</span><span class='p'>);</span>
+<span class='nx'>grunt</span><span class='p'>.</span><span class='nx'>npmTasks</span><span class='p'>(</span><span class='s1'>&#39;grunt-preprocess&#39;</span><span class='p'>);</span>
+</code></pre>
+</div>
+<h3 id='removing_the_script_source_using_'>Removing the script source using <code>grunt-preprocess</code></h3>
+
+<h4 id='syntax'>Syntax</h4>
+<div class='highlight'><pre><code class='html'><span class='c'>&lt;!-- exclude --&gt;</span>
+<span class='nt'>&lt;script </span><span class='na'>src=</span><span class='s'>&quot;path/to/rcl.js&quot;</span><span class='nt'>&gt;&lt;/script&gt;</span>
+<span class='c'>&lt;!-- endexclude --&gt;</span>
+</code></pre>
+</div>
+<h4 id='configuration_in_your_gruntfile'>Configuration in your Gruntfile</h4>
+<div class='highlight'><pre><code class='js'><span class='nx'>preprocess</span> <span class='o'>:</span> <span class='p'>{</span>
+  <span class='nx'>main</span> <span class='o'>:</span> <span class='p'>{</span>
+    <span class='nx'>src</span> <span class='o'>:</span> <span class='s1'>&#39;src/index.html&#39;</span><span class='p'>,</span>
+    <span class='nx'>dest</span> <span class='o'>:</span> <span class='s1'>&#39;build/index.html&#39;</span>
   <span class='p'>}</span>
-<span class='p'>});</span>
+<span class='p'>}</span>
+</code></pre>
+</div>
+<p>See <a href='https://github.com/onehealth/grunt-preprocess'>grunt-preprocess</a> for advanced configurations</p>
 
-<span class='c1'>// Load grunt-strip tasks.</span>
-<span class='nx'>grunt</span><span class='p'>.</span><span class='nx'>loadTasks</span><span class='p'>(</span><span class='s1'>&#39;grunt-strip&#39;</span><span class='p'>);</span>
+<h3 id='removing_the_log_statements_using_'>Removing the log statements using <code>grunt-strip</code></h3>
+
+<h4 id='example_grunt_configuration'>Example grunt configuration</h4>
+<div class='highlight'><pre><code class='js'><span class='nx'>strip</span> <span class='o'>:</span> <span class='p'>{</span>
+  <span class='nx'>main</span> <span class='o'>:</span> <span class='p'>{</span>
+    <span class='nx'>src</span> <span class='o'>:</span> <span class='s1'>&#39;src/main.js&#39;</span><span class='p'>,</span>
+    <span class='nx'>dest</span> <span class='o'>:</span> <span class='s1'>&#39;build/main.built.js&#39;</span><span class='p'>,</span>
+    <span class='nx'>nodes</span> <span class='o'>:</span> <span class='p'>[</span><span class='s1'>&#39;rcl&#39;</span><span class='p'>,</span><span class='s1'>&#39;console&#39;</span><span class='p'>]</span>
+  <span class='p'>}</span>
+<span class='p'>}</span>
 </code></pre>
 </div>
 <p>See <a href='https://github.com/jsoverson/grunt-strip'>grunt-strip</a> for advanced configurations</p>
@@ -197,6 +226,18 @@ Running <span class='s2'>&quot;rcl&quot;</span> task
 <p>Our primary frustration for large JavaScript projects is the lack of extensive logging during development and testing. This is a solution to that works very well and allows for fewer issues to occur in production.</p>
 
 <p>One avenue being considered is to have <a href='https://github.com/jsoverson/grunt-strip'>grunt-strip</a> support removing properties of nodes so that only certain log levels can be removed.</p>
+
+<h3 id='_as_a_grunt_plugin'><code>rcl</code> as a grunt plugin</h3>
+
+<p>RCL was written with grunt so, by convenience, can be used as a grunt plugin. No special functionality exists, but you can specify a custom port via an <code>rcl</code> config</p>
+<div class='highlight'><pre><code class='js'><span class='nx'>rcl</span> <span class='o'>:</span> <span class='p'>{</span>
+  <span class='nx'>port</span> <span class='o'>:</span> <span class='mi'>3000</span>
+<span class='p'>}</span>
+</code></pre>
+</div>
+<h3 id='log4js_configuration'>log4js configuration</h3>
+
+<p>Please visit the project page for documentation <a href='https://github.com/nomiddlename/log4js-node'>log4js-node</a></p>
   </div>
 </div>
 
@@ -209,10 +250,12 @@ Running <span class='s2'>&quot;rcl&quot;</span> task
 
 <footer class="footer">
     <div class="container">
-        <p>By <a href="http://jarrodoverson.com/">Jarrod Overosn</a>. Licensed under the <a href="http://opensource.org/licenses/mit-license.php">MIT License</a>.</p>
+        <p>By <a href="http://jarrodoverson.com/">Jarrod Overson</a>. Licensed under the <a href="http://opensource.org/licenses/mit-license.php">MIT License</a>.</p>
     </div>
 </footer>
 
+<script src="http://code.jquery.com/jquery-1.8.2.min.js"></script>
+<script src="https://raw.github.com/twitter/bootstrap/master/js/bootstrap-modal.js"></script>
 
 </body>
 </html>
