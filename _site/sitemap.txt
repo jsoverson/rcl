@@ -1,8 +1,8 @@
 
-http://jsoverson.github.com/rcl/archive.html
-http://jsoverson.github.com/rcl/atom.xml
-http://jsoverson.github.com/rcl/categories.html
-http://jsoverson.github.com/rcl/index.html
-http://jsoverson.github.com/rcl/pages.html
-http://jsoverson.github.com/rcl/sitemap.txt
-http://jsoverson.github.com/rcl/tags.html
+http://rcljs.com//archive.html
+http://rcljs.com//atom.xml
+http://rcljs.com//categories.html
+http://rcljs.com//index.html
+http://rcljs.com//pages.html
+http://rcljs.com//sitemap.txt
+http://rcljs.com//tags.html

@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
  
  <title>RCL</title>
- <link href="http://jsoverson.github.com/rcl/atom.xml" rel="self"/>
- <link href="http://jsoverson.github.com/rcl"/>
- <updated>2012-10-01T15:05:15-07:00</updated>
- <id>http://jsoverson.github.com/rcl</id>
+ <link href="http://rcljs.com//atom.xml" rel="self"/>
+ <link href="http://rcljs.com/"/>
+ <updated>2012-10-01T16:31:57-07:00</updated>
+ <id>http://rcljs.com/</id>
  <author>
    <name>Jarrod Overson</name>
    <email>jsoverson@gmail.com</email>
