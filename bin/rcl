@@ -1,17 +1,22 @@
 #!/usr/bin/env node
 
-var runner = process.argv.shift(),
-    bin    = process.argv.shift();
+
+var nopt    = require('nopt'),
+    fs      = require('fs'),
+    helpers = require('../tasks/helpers');
+
+var fullOptions = {
+      "port"    : [Number, null]
+    },
+    shortOptions = {
+      "p" : ["--port"]
+    },
+    options = nopt(fullOptions, shortOptions, process.argv, 2)
 
 if (process.argv.indexOf('rcl.js') !== -1) {
-  var fs = require('fs');
   console.log(fs.readFileSync(__dirname + '/../src/rcl.js').toString());
 } else {
-  var grunt = require('grunt');
-
-  grunt.npmTasks('rcl').cli({
-    gruntfile : __dirname + '/../Gruntfile.js'
-  });
+  var io = helpers.startRcl(options.port || 8888);
 }
 
 
