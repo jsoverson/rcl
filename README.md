@@ -256,6 +256,7 @@ In lieu of a formal styleguide, take care to maintain the existing coding style.
 
 ## Release History
 
+- v0.3.0 Abstracted grunt from direct cli use. Removed async for better usage as a grunt task.
 - v0.2.4 Client use fix
 - v0.2.3 Bugfixes
 - v0.2.2 Fixed new use cases

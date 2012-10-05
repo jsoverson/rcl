@@ -1,7 +1,7 @@
 {
   "name": "rcl",
   "description": "Remote Client Logging",
-  "version": "0.2.4",
+  "version": "0.3.0",
   "homepage": "https://jsoverson.github.com/rcl",
   "author": {
     "name": "Jarrod Overson",
@@ -31,8 +31,9 @@
   },
   "dependencies": {
     "grunt": "~0.4.0a",
-    "socket.io" : "*",
-    "log4js" : "*"
+    "socket.io": "*",
+    "log4js": "*",
+    "nopt": "~2.0.0"
   },
   "devDependencies": {
     "grunt": "~0.4.0a"
