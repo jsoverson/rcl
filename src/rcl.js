@@ -94,6 +94,8 @@
     }
 
     function logConsole(level,args) {
+      // Log trace as debug to accommodate console.trace not actually logging.
+      level = level === 'trace' ? 'debug' : level;
       if (console) {
         if (console[level]) console[level].apply(console,args);
         else                console.log.apply([level].concat(args));
