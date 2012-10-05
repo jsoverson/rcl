@@ -1,4 +1,14 @@
 
+0.3.0 / 2012-10-05
+==================
+
+  * moved bulk of task to helper
+  * moved bulk of task to helper
+  * Moved trace to debug for console logging
+  * removed grunt from cli
+  * updated readme
+  * bumped version
+
 0.2.3 / 2012-09-28
 ==================
 
