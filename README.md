@@ -236,13 +236,34 @@ be removed.
 
 ### `rcl` as a grunt plugin
 
-RCL was written with grunt so, by convenience, can be used as a grunt plugin.
-No special functionality exists, but you can specify a custom port via an `rcl` config
+RCL was initially written with grunt in mind and can be used as a grunt plugin in a task
+chain.
+
+#### Install next to your gruntfile with
+
+```bash
+$ npm install rcl
+```
+
+#### Add this line to your gruntfile
+
+```js
+grunt.loadNpmTasks('rcl');
+```
+
+#### Example task chain
+
+```js
+grunt.registerTask('dev', 'server rcl watch');
+```
+
+#### Configuration as grunt plugin
 
 ```js
 
 rcl : {
-  port : 3000
+  port : 3000,
+  wait : true
 }
 
 ```
