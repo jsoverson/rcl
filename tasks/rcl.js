@@ -7,49 +7,17 @@
  */
 
 var helpers = require('./helpers');
-var log4js = require('log4js');
-var glogger = log4js.getLogger('rcl');
-var format = require('./helpers/string-format');
 
 module.exports = function(grunt) {
   'use strict';
 
-  grunt.registerTask('rcl', 'Logging bridge for websocket clients', function() {
-    var options = this.options({
-          port : 8888
-        }),
-        io = helpers.startServer(undefined, options.port),
-        loggers = {};
+  grunt.registerTask('rcl', 'Logging bridge for websocket clients', function(){
+    var port = grunt.config('rcl.port') || 8888;
 
-    var done = this.async();
+    // if rcl.wait = true, don't come back.
+    if (grunt.config('rcl.wait')) this.async();
 
-    io.set('log level',1); // warnings only
-    glogger.debug('Connected on port ' + options.port);
-
-    io.sockets.on('connection', function (socket) {
-      socket.on('rcl', function (data) {
-        var file = data.caller.file,
-            logger = loggers[file] ? loggers[file] : loggers[file] = log4js.getLogger(file),
-            location = ['l', data.caller.line, ':', data.caller.col].join(''),
-            formats = format.parse(data.args[0]),
-            dataToLog = data.args;
-
-        if (formats.length > 0) {
-          dataToLog = format(data.args.shift(), data.args);
-        } else {
-          for (var i = 0; i < data.args.length; i++) {
-            try {
-              data.args[i] = JSON.parse(data.args[i]);
-            } catch(e) {}
-          }
-        }
-        data.args = dataToLog;
-        logger[data.level].apply(logger,[location].concat(dataToLog));
-        if (data.loopback) socket.emit('client:rcl',data);
-        socket.broadcast.emit('client:rcl', data);
-      });
-    });
+    helpers.startRcl(port);
   });
-
 
 };
