@@ -14,11 +14,13 @@
         original = callerParts[1],
         parts = original.match(/^.*([\/<][^\/>]*>?):(\d*):(\d*)$/);
 
+      parts = parts || [];
+
       return {
         original : original,
-        file : parts[1],
-        line : parts[2],
-        col : parts[3]
+        file : parts[1] || '[null]',
+        line : parts[2] || '0',
+        col : parts[3] || '0'
       };
     }
   }
@@ -97,8 +99,8 @@
       // Log trace as debug to accommodate console.trace not actually logging.
       level = level === 'trace' ? 'debug' : level;
       if (console) {
-        if (console[level]) console[level].apply(console,args);
-        else                console.log.apply([level].concat(args));
+        if (console[level])   console[level].apply(console,args);
+        else if (console.log) Function.prototype.apply.call(console,console.log([level].concat(args)));
       }
     }
 
