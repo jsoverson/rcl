@@ -1,7 +1,7 @@
 {
   "name": "rcl",
   "description": "Remote Client Logging",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "homepage": "https://jsoverson.github.com/rcl",
   "author": {
     "name": "Jarrod Overson",
@@ -30,13 +30,13 @@
     "test": "grunt test"
   },
   "dependencies": {
-    "grunt": "~0.4.0a",
     "socket.io": "*",
     "log4js": "*",
     "nopt": "~2.0.0"
   },
   "devDependencies": {
-    "grunt": "~0.4.0a"
+    "grunt": "~0.4.0a",
+    "grunt-jasmine-runner": "~0.5.6"
   },
   "keywords": [
     "gruntplugin",
