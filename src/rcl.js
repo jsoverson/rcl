@@ -7,14 +7,21 @@
 
   function getCaller() {
     try { throw new Error(''); } catch(err) {
-      var depth = 5,
-        stack = err.stack.split("\n"),
-        caller = stack[depth],
-        callerParts = caller.match(/\s*\(?([^\s\)]*)\)?$/),
-        original = callerParts[1],
-        parts = original.match(/^.*([\/<][^\/>]*>?):(\d*):(\d*)$/);
+      var depth,
+        stack,
+        caller,
+        callerParts,
+        original = '',
+        parts = [];
 
-      parts = parts || [];
+      if (err.stack) {
+        depth = 5;
+        stack = err.stack.split("\n");
+        caller = stack[depth];
+        callerParts = caller.match(/\s*\(?([^\s\)]*)\)?$/);
+        original = callerParts[1];
+        parts = original.match(/^.*([\/<][^\/>]*>?):(\d*):(\d*)$/);
+      }
 
       return {
         original : original,
