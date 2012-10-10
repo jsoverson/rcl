@@ -1,4 +1,17 @@
 
+0.3.2 / 2012-10-10 
+==================
+
+  * Added null fallback for client logging
+
+0.3.1 / 2012-10-10 
+==================
+
+  * Added null fallback for client logging
+  * Bumped version. Removed grunt as core dep
+  * fixed console.log apply(). Moved trace to debug in browser.
+  * fixed console.log apply(). Moved trace to debug in browser.
+
 0.3.0 / 2012-10-05
 ==================
 
