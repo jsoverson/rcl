@@ -25,9 +25,9 @@
 
       return {
         original : original,
-        file : parts[1] || '[null]',
-        line : parts[2] || '0',
-        col : parts[3] || '0'
+        file : parts ? parts[1] : '[null]',
+        line : parts ? parts[2] : '0',
+        col : parts ? parts[3]  : '0'
       };
     }
   }
