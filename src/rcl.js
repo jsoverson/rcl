@@ -91,7 +91,8 @@
       var script = document.createElement('script');
       script.src = 'http://' + api.host + ':' + api.port + '/socket.io/socket.io.js';
       script.onload = onLoadIo;
-      document.head.appendChild(script);
+      if (document.head) document.head[0].appendChild(script);
+      else document.getElementsByTagName("head")[0].appendChild(script);
     }
 
 
@@ -107,7 +108,7 @@
       level = level === 'trace' ? 'debug' : level;
       if (console) {
         if (console[level])   console[level].apply(console,args);
-        else if (console.log) Function.prototype.apply.call(console,console.log([level].concat(args)));
+        else if (console.log) Function.prototype.apply.call(console.log,console,[level].concat(args));
       }
     }
 
