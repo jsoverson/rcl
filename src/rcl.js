@@ -88,11 +88,22 @@
     function includeSocketIo() {
       if (isLoading) return;
       isLoading = true;
-      var script = document.createElement('script');
-      script.src = 'http://' + api.host + ':' + api.port + '/socket.io/socket.io.js';
-      script.onload = onLoadIo;
-      if (document.head) document.head.appendChild(script);
-      else document.getElementsByTagName("head")[0].appendChild(script);
+      if (typeof root.define === 'function' && root.define.amd) {
+        if (typeof root.require === 'function') {
+          root.require.config({
+            paths : {
+              io : 'http://' + api.host + ':' + api.port + '/socket.io/socket.io.js'
+            }
+          })
+          root.require(['io'],onLoadIo)
+        }
+      } else {
+        var script = document.createElement('script');
+        script.src = 'http://' + api.host + ':' + api.port + '/socket.io/socket.io.js';
+        script.onload = onLoadIo;
+        if (document.head) document.head.appendChild(script);
+        else document.getElementsByTagName("head")[0].appendChild(script);
+      }
     }
 
 

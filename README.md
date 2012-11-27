@@ -277,6 +277,7 @@ In lieu of a formal styleguide, take care to maintain the existing coding style.
 
 ## Release History
 
+- v0.3.4 Fix for usage via AMD and requirejs
 - v0.3.3 Fixes to client
 - v0.3.2 Small fallback for client error
 - v0.3.1 Fixed some rcl client bugs
