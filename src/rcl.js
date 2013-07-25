@@ -42,7 +42,7 @@
       if (!value) return value;
 
       // If we're a node
-      if (value instanceof Node) return '[ Node ]';
+      if (typeof Node !== 'undefined' && value instanceof Node) return '[ Node ]';
 
       // If we're a window (logic stolen from jQuery)
       if (value.window && value.window == value.window.window) return '[ Window ]';
@@ -168,8 +168,8 @@
     }
 
     api.connect = function(host, port, redux) {
-      host = host || '127.0.0.1';
-      port = port || 8888;
+      host = host || api.host || '127.0.0.1';
+      port = port || api.port || 8888;
       api.host = host;
       api.port = port;
       if (root.io) {
