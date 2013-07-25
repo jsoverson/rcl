@@ -168,8 +168,8 @@
     }
 
     api.connect = function(host, port, redux) {
-      host = host || '127.0.0.1';
-      port = port || 8888;
+      host = host || api.host || '127.0.0.1';
+      port = port || api.port || 8888;
       api.host = host;
       api.port = port;
       if (root.io) {
